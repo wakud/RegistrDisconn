@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace RegistrDisconnection.ViewModels
 {
+    /// <summary>
+    /// для друку вимоги
+    /// </summary>
     public class PrintVymogy
     {
         public List<PrintPoper> PrintPopers { get; set; }

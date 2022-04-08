@@ -6,6 +6,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RegistrDisconnection.ViewModels
 {
+    /// <summary>
+    /// видалення напрямків
+    /// </summary>
     public class DellNapr
     {
         public IEnumerable<ActualDataPerson> People { get; set; }

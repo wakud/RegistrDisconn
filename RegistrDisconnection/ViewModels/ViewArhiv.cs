@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace RegistrDisconnection.ViewModels
 {
+    /// <summary>
+    /// для перегляду архівних даних
+    /// </summary>
     public class ViewArhiv
     {
         public int Id { get; set; }

@@ -2,6 +2,9 @@
 
 namespace RegistrDisconnection.ViewModels
 {
+    /// <summary>
+    /// вивід абонентів згідно напрямку
+    /// </summary>
     public class FilterViewModel
     {
         public ActualDataPerson DataPerson { get; set; }

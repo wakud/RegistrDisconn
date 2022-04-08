@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace RegistrDisconnection.ViewModels
 {
+    /// <summary>
+    /// модель для перегляду відключених абонентів
+    /// </summary>
     public class AbonentVykl
     {
         public IEnumerable<ActualDataPerson> MainContext { get; set; }      //список абонентів виключених з актуальними даними

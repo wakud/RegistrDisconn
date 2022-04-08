@@ -2,6 +2,9 @@
 
 namespace RegistrDisconnection.MyClasses
 {
+    /// <summary>
+    /// пагінація сторінок
+    /// </summary>
     public class PageViewModel
     {
         public int PageNumber { get; private set; }     //номер текучої сторінки

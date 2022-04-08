@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 namespace RegistrDisconnection.ViewModels
 {
+    /// <summary>
+    /// вивід напрямків
+    /// </summary>
     public class FilterNapr
     {
         public IEnumerable<ActualDataPerson> People { get; set; }

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace RegistrDisconnection.ViewModels
 {
+    /// <summary>
+    /// для супровідної для укрпошти
+    /// </summary>
     public class PrintPoperPostal
     {
         public List<PrintPoper> PrintPopers { get; set; }
