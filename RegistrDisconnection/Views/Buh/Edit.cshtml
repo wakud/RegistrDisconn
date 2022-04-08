@@ -154,7 +154,6 @@
                 $('#kredPoch').val($('#kredPoch').val().replace('.', ','));
                 $('#debPoch').val($('#debPoch').val().replace('.', ','));
                 $('#oplata').val($('#oplata').val().replace('.', ','));
-                //$('#narah').val($('#narah').val().replace('.', ','));
                 $('#sumVykl').val($('#sumVykl').val().replace('.', ','));
                 $('#sumVkl').val($('#sumVkl').val().replace('.', ','));
                 $('#debKin').val($('#debKin').val().replace('.', ','));
@@ -214,7 +213,7 @@
             }
             const debetEnd = $('#debKin');
             const creditEnd = $('#kredKin');
-            let saldo = (debetStart + sumVkl + sumVykl /*+ narah*/) - oplata - creditStart;
+            let saldo = (debetStart + sumVkl + sumVykl) - oplata - creditStart;
             debetEnd.val(0);
             creditEnd.val(0);
             if (saldo > 0) {

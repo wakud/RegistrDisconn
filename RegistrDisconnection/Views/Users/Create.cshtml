@@ -1,7 +1,7 @@
 ﻿@model RegistrDisconnection.Models.Users.User
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Добавлення користувача";
 }
 
 <h1>Добавити нового користувача</h1>
@@ -27,7 +27,7 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CokId" class="control-label">ЦОК</label>
+                <label asp-for="CokId" class="control-label">Організація</label>
                 <select asp-for="CokId" class ="form-control" asp-items="ViewBag.CokId"></select>
             </div>
             <div class="form-group">

@@ -2,7 +2,7 @@
 @model RegistrDisconnection.Models.Users.User
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Редагування користувача";
 }
 
 <h1>Змінити дані про користувача</h1>
@@ -29,7 +29,7 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CokId" class="control-label">ЦОК</label>
+                <label asp-for="CokId" class="control-label">Організація</label>
                 <select asp-for="CokId" class="form-control" asp-items="ViewBag.CokId"></select>
                 <span asp-validation-for="CokId" class="text-danger"></span>
             </div>

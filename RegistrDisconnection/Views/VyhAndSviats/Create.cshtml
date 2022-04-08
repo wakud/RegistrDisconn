@@ -1,7 +1,7 @@
 ﻿@model RegistrDisconnection.Models.Dictionaries.VyhAndSviat
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Вихідні і святкові дні";
 }
 
 <h4>Добавити день</h4>
@@ -11,10 +11,6 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div name="NewDate" asp-validation-summary="ModelOnly" class="text-danger"></div>
-                @*<div class="form-group">
-                    <label asp-for="Date" class="control-label">Виберіть дату </label>
-                    <input type="date" id="davaToday">
-                </div>*@
                 <div class="form-group">
                     <label asp-for="Year" class="control-label">Рік</label>
                     <input asp-for="Year" class="form-control" />

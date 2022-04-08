@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<RegistrDisconnection.Models.Operations.PoperDrukGroup>
 
 @{
-    ViewData["Title"] = "UkrPoshta";
+    ViewData["Title"] = "Документи для укрпошти";
 }
 
 <h4>Формування конвертів і DBF-файла для "УкрПошти" згідно виданих попереджень</h4>
@@ -9,7 +9,6 @@
 <form name="myForm">
     <select onchange="changeOption()" id="typLista" name="typLista">
         <option value="24" selected>Без відмітки</option>
-        @*<option value="22,50">СМС-повідомлення</option>*@
         <option value="41">Рекомендованим з повідомленням</option>
     </select>
 </form>

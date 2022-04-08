@@ -116,61 +116,59 @@
                 </div>
             </main>
         </div>
-
     }
 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/js/jquery.tablesort.js"></script>
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/jquery.tablesort.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $('table').tablesort()
-            $('thead th.number').data(
-                'sortBy',
-                function (th, td, tablesort) {
-                    return parseFloat(td.text());
-                }
-            );
-        })
-    </script>
-    @if (TempData["error"] != null && TempData["error"].ToString().Trim() == "BadUpdate".ToString().Trim())
-    {
-        <script>
-            setTimeout(() => alert("Оновіть дані!"), 500);
-        </script>
-    }
-    <script>
-        async function loadPage(nextPage) {
-            $("#load").show();
-            $("#main-content-container").hide();
-            $("#load-container").css("display", "flex");
-            $("#load-container").css("flex", "8");
-            $("#load-container").css("align-items", "center");
-            $("#load-container").css("justify-content", "center");
-            console.log(nextPage);
-            const disableSelf = () => {
-                $("#load").hide();
-                $("#main-content-container").show();
-                $("#load-container").css("display", "block");
-                $("#load-container").css("flex", "none");
-                $("#load-container").css("align-items", "none");
-                $("#load-container").css("justify-content", "none");
-            };
-            if (nextPage) {
-                try {
-                    $('body').load(nextPage);
-                } catch (err) {
-                    alert(err);
-                    disableSelf();
-                }
+<script>
+    $(document).ready(function () {
+        $('table').tablesort()
+        $('thead th.number').data(
+            'sortBy',
+            function (th, td, tablesort) {
+                return parseFloat(td.text());
             }
-            return disableSelf;
-        };
+        );
+    })
+</script>
+@if (TempData["error"] != null && TempData["error"].ToString().Trim() == "BadUpdate".ToString().Trim())
+{
+    <script>
+        setTimeout(() => alert("Оновіть дані!"), 500);
     </script>
-    @RenderSection("Scripts", required: false)
+}
+<script>
+    async function loadPage(nextPage) {
+        $("#load").show();
+        $("#main-content-container").hide();
+        $("#load-container").css("display", "flex");
+        $("#load-container").css("flex", "8");
+        $("#load-container").css("align-items", "center");
+        $("#load-container").css("justify-content", "center");
+        console.log(nextPage);
+        const disableSelf = () => {
+            $("#load").hide();
+            $("#main-content-container").show();
+            $("#load-container").css("display", "block");
+            $("#load-container").css("flex", "none");
+            $("#load-container").css("align-items", "none");
+            $("#load-container").css("justify-content", "none");
+        };
+        if (nextPage) {
+            try {
+                $('body').load(nextPage);
+            } catch (err) {
+                alert(err);
+                disableSelf();
+            }
+        }
+        return disableSelf;
+    };
+</script>
+@RenderSection("Scripts", required: false)
 </body>
 </html>

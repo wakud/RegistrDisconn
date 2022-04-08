@@ -1,7 +1,7 @@
 ﻿@model RegistrDisconnection.Models.Dictionaries.Organization
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Про організацію";
 }
 
 <div>
@@ -9,23 +9,19 @@
     <br>
     <table style="width:100%;" border="1">
         <tr>
-            <td><b>Код ЦОКу:</b></td>
+            <td><b>Код організації:</b></td>
             <td>@Html.DisplayFor(model => model.Code)</td>
         </tr>
         <tr>
-            <td><b>Назва ЦОКу:</b></td>
+            <td><b>Назва організації:</b></td>
             <td>@Html.DisplayFor(model => model.Name)</td>
         </tr>
-        @*<tr>
-            <td><b>Назва ЦОКу для документів(без закінчення -ий)::</b></td>
-            <td>@Html.DisplayFor(model => model.NameDoc)</td>
-        </tr>*@
         <tr>
-            <td><b>Начальник ЦОКу:</b></td>
+            <td><b>Начальник організації:</b></td>
             <td>@Html.DisplayFor(model => model.Nach)</td>
         </tr>
         <tr>
-            <td><b>Бухгалтер ЦОКу:</b></td>
+            <td><b>Бухгалтер організації:</b></td>
             <td>@Html.DisplayFor(model => model.Buh)</td>
         </tr>
         <tr>
@@ -33,7 +29,7 @@
             <td>@Html.DisplayFor(model => model.RegionId)</td>
         </tr>
         <tr>
-            <td><b>Повна адреса ЦОКу:</b></td>
+            <td><b>Повна адреса організації:</b></td>
             <td>@Html.DisplayFor(model => model.Address)</td>
         </tr>
         <tr>
@@ -93,5 +89,5 @@
 <br>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Змінити</a>
-    <a asp-action="Index" class="btn btn-info">До списку ЦОКів</a>
+    <a asp-action="Index" class="btn btn-info">До списку організацій</a>
 </div>

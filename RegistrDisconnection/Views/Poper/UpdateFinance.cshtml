@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<RegistrDisconnection.Models.Operations.UpdateFinance>
 
 @{
-    ViewData["Title"] = "UpdateFinance";
+    ViewData["Title"] = "Оновлення боргів";
 }
 
 <h1>Список оновлених боргів абонентів</h1>
@@ -41,7 +41,7 @@
                         </td>
                         <td>
                             <a target="_blank" asp-controller="AbonDetails" asp-action="Index" asp-route-id="@item.Person.Id">Детально</a> |
-                            <a href="@item.Person.EsLink()">Utility</a>
+                            <a href="@item.Person.EsLink()">ОСР</a>
                         </td>
                     </tr>
             }

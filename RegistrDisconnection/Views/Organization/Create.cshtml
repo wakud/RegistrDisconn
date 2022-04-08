@@ -9,31 +9,25 @@
 <form asp-action="Edit">
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <span asp-validation-for="Code" class="input-group-text" id="inputGroup-sizing-Code">Код ЦОКу:</span>
+            <span asp-validation-for="Code" class="input-group-text" id="inputGroup-sizing-Code">Код організації:</span>
         </div>
         <input asp-for="Code" class="form-control" aria-describedby="inputGroup-sizing-Code">
     </div>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <span asp-validation-for="Name" class="input-group-text" id="inputGroup-sizing-Name">Назва ЦОКу:</span>
+            <span asp-validation-for="Name" class="input-group-text" id="inputGroup-sizing-Name">Назва організації:</span>
         </div>
         <input asp-for="Name" class="form-control" aria-describedby="inputGroup-sizing-Name">
     </div>
-    @*<div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span asp-validation-for="NameDoc" class="input-group-text" id="inputGroup-sizing-NameDoc">Назва ЦОКу для документів(без закінчення -ий):</span>
-            </div>
-            <input asp-for="NameDoc" class="form-control" aria-describedby="inputGroup-sizing-NameDoc">
-        </div>*@
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <span asp-validation-for="Nach" class="input-group-text" id="inputGroup-sizing-Nach">Начальник ЦОКу:</span>
+            <span asp-validation-for="Nach" class="input-group-text" id="inputGroup-sizing-Nach">Начальник організації:</span>
         </div>
         <input asp-for="Nach" class="form-control" aria-describedby="inputGroup-sizing-Nach">
     </div>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <span asp-validation-for="Buh" class="input-group-text" id="inputGroup-sizing-Buh">Бухгалтер ЦОКу:</span>
+            <span asp-validation-for="Buh" class="input-group-text" id="inputGroup-sizing-Buh">Бухгалтер організації:</span>
         </div>
         <input asp-for="Buh" class="form-control" aria-describedby="inputGroup-sizing-Buh">
     </div>
@@ -45,7 +39,7 @@
     </div>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <span asp-validation-for="Address" class="input-group-text" id="inputGroup-sizing-Address">Повна адреса ЦОКу:</span>
+            <span asp-validation-for="Address" class="input-group-text" id="inputGroup-sizing-Address">Повна адреса організації:</span>
         </div>
         <input asp-for="Address" class="form-control" aria-describedby="inputGroup-sizing-Address">
     </div>
@@ -111,7 +105,7 @@
     </div>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <span asp-validation-for="NameREM" class="input-group-text" id="inputGroup-sizing-NameREM">Назва РЕМу:</span>
+            <span asp-validation-for="NameREM" class="input-group-text" id="inputGroup-sizing-NameREM">Назва ОСР:</span>
         </div>
         <input asp-for="NameREM" class="form-control" aria-describedby="inputGroup-sizing-NameREM">
     </div>
@@ -129,7 +123,7 @@
     </div>
     <div class="form-group">
         <input type="submit" value="Добавити" class="btn btn-primary" />
-        <a asp-action="Index" class="btn btn-info">До списку ЦОКів</a>
+        <a asp-action="Index" class="btn btn-info">До списку організацій</a>
     </div>
 </form>
 

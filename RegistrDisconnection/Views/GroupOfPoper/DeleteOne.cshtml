@@ -2,10 +2,8 @@
 
 @model RegistrDisconnection.ViewModels.FilterViewModel
 
-@*@model RegistrDisconnection.Models.Abonents.ActualDataPerson*@
-
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Відміна одного попередження";
 }
 
 <h3>Відмінити видане попередження абоненту?</h3>
@@ -33,18 +31,6 @@
             </tr>
         </table>
         <hr />
-        @*<h4>Лічильник</h4>
-        <table style="width:100%;">
-            <tr>
-                <td>Номер лічильника:</td>
-                <td><b>@Html.DisplayFor(model => model.lichylnyk.Number)</b></td>
-            </tr>
-            <tr>
-                <td>ЕІС:</td>
-                <td><b>@Html.DisplayFor(model => model.lichylnyk.EIS)</b></td>
-            </tr>
-        </table>
-        <hr />*@
         <h4>Стан розрахунків</h4>
         <table>
             <tr>

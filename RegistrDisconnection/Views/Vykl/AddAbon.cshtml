@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<RegistrDisconnection.Models.Abonents.ActualDataPerson>
 @{
-    ViewData["Title"] = "Завантаження боржників";
+    ViewData["Title"] = "Завантаження абонентів, які відключені";
 }
 
 <h3>Завантаження абонентів, які відключені.</h3>
@@ -44,7 +44,7 @@
                         <td>@Html.ValueFor(modelItem => item.Vykl.DateVykl, "{0:dd/MM/yyyy}")</td>
                         <td>
                             <a target="_blank" asp-controller="Vykl" asp-action="Details" asp-route-id="@item.Id">Детально</a> |
-                            <a href="@item.Person.EsLink()">Utility</a>
+                            <a href="@item.Person.EsLink()">ОСР</a>
                         </td>
                     </tr>
                 }

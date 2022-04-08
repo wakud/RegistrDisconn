@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<RegistrDisconnection.Models.Dictionaries.VyhAndSviat>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Вихідні і святкові дні";
 }
 
 <h1>Вихідні і святкові дні</h1>
@@ -40,9 +40,6 @@
 <table class="table">
     <thead>
         <tr>
-            @*<th>
-                    Дата
-                </th>*@
             <th>
                 Рік
             </th>
@@ -62,9 +59,6 @@
         @foreach (var item in Model)
         {
             <tr>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Date)
-                    </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Year)
                 </td>
@@ -79,14 +73,12 @@
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Змінити</a> |
-                    @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
                     <a asp-action="Delete" asp-route-id="@item.Id">Видалити</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-
 
 <script>
     function submitForm() {

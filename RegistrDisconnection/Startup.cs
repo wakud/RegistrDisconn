@@ -1,13 +1,12 @@
-//using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using RegistrDisconnection.Data;
 using RegistrDisconnection.MyClasses;
-using System;
 
 namespace RegistrDisconnection
 {
@@ -24,7 +23,7 @@ namespace RegistrDisconnection
         public void ConfigureServices(IServiceCollection services)
         {
             //отримуємо рядок підключення до БД
-            string connection = Utils.Decrypt(Configuration.GetConnectionString("TEPConnection"));
+            string connection = Utils.Decrypt(Configuration.GetConnectionString("Connection"));
             BillingUtils.Configuration = Configuration;
 
             //створюємо БД 
@@ -52,16 +51,16 @@ namespace RegistrDisconnection
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            // если приложение в процессе разработки
-            //if (env.IsDevelopment())
-            //{
-            //    // то выводим информацию об ошибке, при наличии ошибки
-            //}
-            //else
-            //{
-            //    _ = app.UseExceptionHandler("/Home/Error");
-            //    _ = app.UseHsts();
-            //}
+            //якщо програма в процесі розробки
+            if (env.IsDevelopment())
+            {
+                // тут виводимо помилки
+            }
+            else
+            {
+                _ = app.UseExceptionHandler("/Home/Error");
+                _ = app.UseHsts();
+            }
 
             _ = app.UseDeveloperExceptionPage();
             _ = app.UseHttpsRedirection();  //перенаправляет все запросы HTTP на HTTPS

@@ -33,10 +33,10 @@
                             <input id="filtr" type="submit" name="filtr" value="Фільтр" class="btn btn-outline-dark mb-2" />
                         </div>
                     </div>
-                    @*<div>
+                    <div>
                         <input type="checkbox" id="checkbox1"> Корекція дати відключення
                         <input type="date" id="myDatepicker" name="myDatepicker" class="form-control" value="@DateTime.Now" />
-                    </div>*@
+                    </div>
                 </div>
             </div>
         </div>
@@ -62,7 +62,6 @@
 <table class="table table-striped" id="myTable">
     <thead>
         <tr>
-            @*<th class="no-sort" style="text-align:center;"><input type="checkbox"></th>*@
             <th>Особовий рахунок</th>
             <th>Прізвище ім'я по-батькові</th>
             <th>Адреса проживання</th>
@@ -78,7 +77,6 @@
         @foreach (RegistrDisconnection.Models.Abonents.ActualDataPerson item in Model.People)
         {
         <tr>
-            @*<td style="text-align:center;"><input type="checkbox"></td>*@
             <td>@item.Person.OsRah</td>
             <td>@item.Person.FullName</td>
             <td>@item.Person.FullAddress</td>
@@ -89,7 +87,7 @@
             <td>@item.Person.Address.Direction.Name</td>
             <td>
                 <a asp-controller="AbonDetails" asp-action="Index" asp-route-id="@item.Id">Детально</a> |
-                <a href="@item.Person.EsLink()">Utility</a> |
+                <a href="@item.Person.EsLink()">ОСР</a> |
                 <a asp-controller="GroupOfPoper"
                     asp-action="DeleteOne"
                     asp-route-id="@item.Id"
