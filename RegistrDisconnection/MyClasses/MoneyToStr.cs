@@ -1,9 +1,5 @@
 ﻿/// <summary>
-/// Класс отображения суммы прописью.
-/// 3 варианта - рубли, доллары и просто для использования
-/// других любых единиц (вагоны, мешки и т.п.)
-/// --------------------------------------
-/// Автор - Глеб Уфимцев (dnkvpb@nm.ru)
+/// Клас сума прописом
 /// </summary>
 namespace RegistrDisconnection.MyClasses
 {
@@ -99,7 +95,7 @@ namespace RegistrDisconnection.MyClasses
             }
             else if ((ThNum > 2) && More4)
             {
-                return "ів";         //це напевно мільйон_"ів"
+                return "ів";         //це мільйон_"ів"
             }
             else if ((ThNum == 2) && In234)
             {
@@ -119,14 +115,7 @@ namespace RegistrDisconnection.MyClasses
             }
             else if (Dek == 1)
             {
-                //if (IsMale)
-                //{
-                //    return "erин";
-                //}
-                //else
-                //{
                 return "на";          //виводить закінчення Од_"на" гривня
-                //}
             }
             else
             {

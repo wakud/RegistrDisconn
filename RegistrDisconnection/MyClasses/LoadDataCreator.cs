@@ -4,6 +4,9 @@ using System.Data;
 
 namespace RegistrDisconnection.MyClasses
 {
+    /// <summary>
+    /// Заповнення списку LoadUtility завантаженими даними з БД ОСР
+    /// </summary>
     public static class LoadDataCreator
     {
         public static LoadUtility CreateLoadData(DataRow row, string cokCode)
@@ -65,7 +68,7 @@ namespace RegistrDisconnection.MyClasses
                 //DeliverDate = row["дата попер."].ToString().Trim(),
             };
 
-            if (cokCode == "TR40")
+            if (cokCode == "ORG")
             {
                 loadUtility.DirectionName = row["Напрямок"].ToString().Trim();
             }

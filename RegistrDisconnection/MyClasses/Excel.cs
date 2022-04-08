@@ -13,6 +13,9 @@ using System.Linq;
 
 namespace RegistrDisconnection.MyClasses
 {
+    /// <summary>
+    /// Формування звітів в Excel
+    /// </summary>
     public class Excel
     {
         private readonly XLWorkbook wb;
@@ -30,29 +33,37 @@ namespace RegistrDisconnection.MyClasses
             return DateTime.Parse(stanom_na);
         }
 
+        /// <summary>
+        /// Формуємо шапку документу
+        /// </summary>
+        /// <param name="currentUser"></param>
+        /// <returns></returns>
         private string CreateNameDoc(User currentUser)
         {
             string NameDoc;
             if (currentUser.Login == "buh")
             {
-                NameDoc = "ТОВ \"Тернопільелектропостач\"";
+                NameDoc = "ТОВ \"Назва організації\"";
             }
             else
             {
-                if (currentUser.Cok.Code == "TR40" || currentUser.Cok.Code == "TR39")
+                if (currentUser.Cok.Code == "ORG" || currentUser.Cok.Code == "ORH")
                 {
-                    NameDoc = currentUser.Cok.Name.Remove(12) + "ому ЦОКу";
+                    NameDoc = currentUser.Cok.Name.Remove(12) + "ому орг-її";
                 }
                 else
                 {
                     NameDoc = currentUser.Cok.Name.Trim();
-                    NameDoc = NameDoc.Remove(NameDoc.Length - 6) + "ому ЦОКу";
+                    NameDoc = NameDoc.Remove(NameDoc.Length - 6) + "ому орг-її";
                 }
             }
 
             return NameDoc;
         }
 
+        /// <summary>
+        /// Виставляємо параметри сторінки
+        /// </summary>
         private void SetDefaultSettings()
         {
             ws.Name = "Звіт";
@@ -65,12 +76,22 @@ namespace RegistrDisconnection.MyClasses
             ws.PageSetup.HorizontalDpi = 600;
         }
 
+        /// <summary>
+        /// вивід шапки
+        /// </summary>
+        /// <param name="value"></param>
         private void SetZvitHeader(string value)
         {
             ws.Cell("A1").Value = value;
             //ws.Cell("A1").Style
         }
 
+        /// <summary>
+        /// формування звіту 1
+        /// </summary>
+        /// <param name="zvits"></param>
+        /// <param name="user"></param>
+        /// <param name="stanom_na"></param>
         public void CreateZvit1(List<Zvit1> zvits, User user, string stanom_na)
         {
             string NameDoc = CreateNameDoc(user);
@@ -80,8 +101,8 @@ namespace RegistrDisconnection.MyClasses
             SetDefaultSettings(); // Встановлюємо базові налаштування для Сторінки
             //шапка документу
             SetZvitHeader(
-                "Інформація щодо заборгованості за спожиту електроенергію населенням " +
-                "(від 1187 грн та/або до 1187 грн з терміном виникнення 3 місяці і більше)"
+                "Інформація щодо заборгованості за спожиту е/е населенням " +
+                "(від суми грн та/або до суми грн з терміном виникнення 3 місяці і більше)"
             );
             styler.CenterAndMerge("A1", "H1"); // Центруємо перший параметр комірку, і з'єднуємо її з другим параметром
             ws.Cell("A2").Value = "станом на " + DtStanom.ToString("dd MMMM yyyy") + " р. по " + NameDoc;
@@ -156,10 +177,17 @@ namespace RegistrDisconnection.MyClasses
             styler.SetBorder("A3:H" + currRow, left: false);
 
             //Ви водимо підвал документу
-            ws.Cell(currRow + 2, currCell + 2).Value = "Начальник ___________________ ЦОК";
+            ws.Cell(currRow + 2, currCell + 2).Value = "Начальник ___________________ ";
             ws.Cell(currRow + 2, currCell + 4).Value = user.Cok.Nach;
         }
 
+        /// <summary>
+        /// формування звіту 2
+        /// </summary>
+        /// <param name="zvits"></param>
+        /// <param name="user"></param>
+        /// <param name="stanom_na"></param>
+        /// <param name="per"></param>
         public void CreateZvit2(List<Zvit1> zvits, User user, string stanom_na, DateTime per)
         {
             DateTime from = per;
@@ -170,7 +198,7 @@ namespace RegistrDisconnection.MyClasses
             SetDefaultSettings(); // Встановлюємо базові налаштування для Сторінки
             //робимо шапку документу
             SetZvitHeader(
-                "Інформація щодо відключень та виданих попереджень по населенню ТОВ \"Тернопільелектропостач\"" +
+                "Інформація щодо відключень та виданих попереджень по населенню ТОВ \"назва організації\"" +
                 " за " + per.ToString("Y")
             );
             styler.CenterAndMerge("A1", "I1"); // Центруємо перший параметр комірку, і з'єднуємо її з другим параметром
@@ -294,11 +322,16 @@ namespace RegistrDisconnection.MyClasses
 
             styler.SetBorder("A3:I6", left: false);
             //Ви водимо підвал документу
-            ws.Cell("C9").Value = "Начальник ___________________ ЦОК";
+            ws.Cell("C9").Value = "Начальник ___________________ ";
             ws.Cell("G9").Value = user.Cok.Nach;
         }
 
-        //Звіт "Перелік споживачів, по яких видано вимогу на вимкнення"
+        /// <summary>
+        /// Звіт "Перелік споживачів, по яких видано вимогу на вимкнення"
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="stanom_na"></param>
+        /// <param name="per"></param>
         public void CreateZvit3(User user, string stanom_na, DateTime per)
         {
             DateTime from = per;
@@ -455,11 +488,16 @@ namespace RegistrDisconnection.MyClasses
             styler.SetBorder("A3:G" + currRow, left: false);
 
             //Ви водимо підвал документу
-            ws.Cell(currRow + 2, currCell + 2).Value = "Начальник ___________________ ЦОК";
+            ws.Cell(currRow + 2, currCell + 2).Value = "Начальник ___________________ ";
             ws.Cell(currRow + 2, currCell + 4).Value = user.Cok.Nach;
         }
 
-        //Звіт кому видали попередження
+        /// <summary>
+        /// Звіт кому видали попередження
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="from"></param>
+        /// <param name="people"></param>
         public void CreateZvit4(User user, DateTime from, List<Zvit1> people)
         {
             ws = wb.Worksheets.Add();
@@ -567,6 +605,12 @@ namespace RegistrDisconnection.MyClasses
             ws.Cell(currRow + 2, currCell + 4).Value = user.FullName;
         }
 
+        /// <summary>
+        /// Звіт "Припинення та відновлення електропостачання"
+        /// </summary>
+        /// <param name="zvitVykls"></param>
+        /// <param name="user"></param>
+        /// <param name="stanom_na"></param>
         public void CreateZvitVykl(List<ZvitVykl> zvitVykls, User user, string stanom_na)
         {
             string NameDoc = CreateNameDoc(user);
@@ -576,7 +620,6 @@ namespace RegistrDisconnection.MyClasses
             SetDefaultSettings(); // Встановлюємо базові налаштування для Сторінки
             //шапка документу
             SetZvitHeader(
-                            //"ТОВ \"Тернопільелектропостач\" " + NameDoc +
                             "Припинення та відновлення електропостачання "
                          );
             styler.CenterAndMerge("A1", "M1"); // Центруємо перший параметр комірку, і з'єднуємо її з другим параметром
@@ -695,10 +738,16 @@ namespace RegistrDisconnection.MyClasses
             styler.SetBorder("A3:M" + currRow, left: false);
 
             //Ви водимо підвал документу
-            ws.Cell(currRow + 2, currCell + 2).Value = "Начальник ЦОК _______________  " + user.Cok.Nach;
-            ws.Cell(currRow + 4, currCell + 2).Value = "Бухгалтер ЦОК _______________  " + user.Cok.Buh;
+            ws.Cell(currRow + 2, currCell + 2).Value = "Начальник _______________  " + user.Cok.Nach;
+            ws.Cell(currRow + 4, currCell + 2).Value = "Бухгалтер _______________  " + user.Cok.Buh;
         }
 
+        /// <summary>
+        /// "Реєстр припинення та відновлення електропостачання"
+        /// </summary>
+        /// <param name="zvitVykls"></param>
+        /// <param name="user"></param>
+        /// <param name="stanom_na"></param>
         public void CreateZvitReestr(List<ZvitVykl> zvitVykls, User user, string stanom_na)
         {
             string NameDoc = CreateNameDoc(user);
@@ -708,7 +757,6 @@ namespace RegistrDisconnection.MyClasses
             SetDefaultSettings(); // Встановлюємо базові налаштування для Сторінки
             //шапка документу
             SetZvitHeader(
-                            //"ТОВ \"Тернопільелектропостач\" " + NameDoc +
                             "Реєстр припинення та відновлення електропостачання "
                          );
             styler.CenterAndMerge("A1", "L1"); // Центруємо перший параметр комірку, і з'єднуємо її з другим параметром
@@ -794,7 +842,6 @@ namespace RegistrDisconnection.MyClasses
             ws.Column(10).Width = 11;
             ws.Column(11).Width = 10;
             ws.Column(12).Width = 10;
-            //styler.SetStreamBold(3, 1, 13);
             //встановлюємо початок запису даних
             int currRow = 5;        //рядок 5
             int currCell = 1;       //стовпчик 1
@@ -844,10 +891,16 @@ namespace RegistrDisconnection.MyClasses
             styler.SetBorder("A3:L" + currRow, left: false);
 
             //Ви водимо підвал документу
-            ws.Cell(currRow + 2, currCell + 1).Value = "Начальник ЦОК _______________  ";
-            ws.Cell(currRow + 4, currCell + 1).Value = "Бухгалтер ЦОК _______________  ";
+            ws.Cell(currRow + 2, currCell + 1).Value = "Начальник _______________  ";
+            ws.Cell(currRow + 4, currCell + 1).Value = "Бухгалтер _______________  ";
         }
 
+        /// <summary>
+        /// "Припинення та відновлення електропостачання"
+        /// </summary>
+        /// <param name="Selected"></param>
+        /// <param name="user"></param>
+        /// <param name="stanom_na"></param>
         public void CreateZvitVyklAll(Dictionary<int, SelectedGrouping> Selected, User user, string stanom_na)
         {
             string NameDoc = CreateNameDoc(user);
@@ -957,10 +1010,14 @@ namespace RegistrDisconnection.MyClasses
             styler.SetBorder("A5:H" + currRow, left: false);        //робимо рамку таблиці
 
             //Ви водимо підвал документу
-            ws.Cell(currRow + 2, currCell + 1).Value = "Начальник ТЕП _______________  (Мандзин І.П.)";
-            ws.Cell(currRow + 4, currCell + 1).Value = "Бухгалтер ТЕП _______________  (Чокан І.А.)";
+            ws.Cell(currRow + 2, currCell + 1).Value = "Начальник _______________  (ПІП)";
+            ws.Cell(currRow + 4, currCell + 1).Value = "Бухгалтер _______________  (ПІП)";
         }
 
+        /// <summary>
+        /// видача файлу користувачу
+        /// </summary>
+        /// <returns></returns>
         public byte[] CreateFile()
         {
             using MemoryStream stream = new MemoryStream();

@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace RegistrDisconnection.MyClasses
 {
+    /// <summary>
+    /// Стилі в екселі в документі
+    /// </summary>
     public class ExcelStyling
     {
         private readonly IXLWorksheet ws;

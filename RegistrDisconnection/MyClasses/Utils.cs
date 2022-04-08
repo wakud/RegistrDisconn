@@ -12,9 +12,16 @@ using System.IO;
 
 namespace RegistrDisconnection.MyClasses
 {
+    /// <summary>
+    /// клас утиліт для програми
+    /// </summary>
     public class Utils
     {
-        //це для екселя наступна буква колонки
+        /// <summary>
+        /// це для екселя наступна буква колонки
+        /// </summary>
+        /// <param name="letter"></param>
+        /// <returns></returns>
         public static char GetNextLetterExcel(char letter)
         {
             char nextChar = letter == 'z'
@@ -25,7 +32,11 @@ namespace RegistrDisconnection.MyClasses
             return nextChar;
         }
 
-        //вивід інформації табличкою в вюшці
+        /// <summary>
+        /// вивід інформації табличкою в вюшці
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
         public static string ConvertDataTableToHTML(DataTable dt)
         {
             string html = "<table>";
@@ -52,34 +63,26 @@ namespace RegistrDisconnection.MyClasses
             return html;
         }
 
-        //Утиліта для визначення дати відключення
+        /// <summary>
+        /// Утиліта для визначення дати відключення
+        /// </summary>
+        /// <param name="Holidays"></param>
+        /// <param name="dt"></param>
+        /// <param name="dates"></param>
+        /// <returns></returns>
         public static DateTime GetFreePoperDay(DbSet<VyhAndSviat> Holidays, DateTime dt, IQueryable<PoperDrukGroup> dates)
         {
-            Console.OutputEncoding = System.Text.Encoding.GetEncoding(1251);
-            DateTime current = dt/*.AddDays(1)*/; // К-сть днів
+            Console.OutputEncoding = Encoding.GetEncoding(1251);
+            DateTime current = dt; // К-сть днів
             int currentDay = 1;
             int endDay = 19;    //було 16
             //Вираховуємо 16 робочих днів + 3 календарні дні, для дати відключення
-            //Console.WriteLine("Перший день - " + current.Date.ToString("d"));
-            //Console.WriteLine("Останній день - " + endDay);
-            //Console.WriteLine("----------------------------");
             while (currentDay < endDay)
             {
-                //if (currentDay == 1)
-                //{
-                //    Console.WriteLine("Понесла на пошту - " + currentDay + "; дата: " + current.Date.ToString("d"));
-                //}
-                //if (currentDay >= 2 && currentDay <= 6)
-                //{
-                //    Console.WriteLine("Пошта доставляє листа абоненту - " + currentDay + "; дата: " + current.Date.ToString("d"));
-                //}
-
                 if (currentDay >= 7 && currentDay <= 9)
                 {
-                    //Console.WriteLine("Абонент знайомиться з листом - від " + currentDay + "; дата: " + current.Date.ToString("d"));
                     currentDay += 2;
                     current = current.AddDays(2);
-                    //Console.WriteLine("Абонент знайомиться з листом - до " + currentDay + "; дата: " + current.Date.ToString("d"));
                 }
 
                 VyhAndSviat existedHoliday = Holidays.FirstOrDefault(
@@ -97,16 +100,8 @@ namespace RegistrDisconnection.MyClasses
                     currentDay += 1;
                 }
                 current = current.AddDays(1);   //якщо все добре добавляємо день
-                //if (currentDay >= 10 && currentDay <= 19)
-                //{
-                //    Console.WriteLine("Абонент оплачує - " + currentDay + "; дата: " + current.Date.ToString("d"));
-                //}
             }
-            //Console.WriteLine("Останній день - " + current.Date.ToString("d"));
-            //Console.WriteLine("Відключення має відбутись на наступний день.");
             current = current.AddDays(1);
-            //Console.WriteLine("Прогнозована дата відключення - " + current.Date.ToString("d"));
-            //Console.WriteLine("++++++++++++++++++++++++++++++++");
 
             //Перевіряємо чи дата відключення не припадає на пятницю, суботу, неділю і на святковий день
             while (true)
@@ -123,7 +118,6 @@ namespace RegistrDisconnection.MyClasses
                     {
                         current = current.AddDays(1);
                     }
-                    //Console.WriteLine("Зайняті дати - " + item.Vykl.ToString("d"));
                 }
 
                 VyhAndSviat exHoliday = Holidays.FirstOrDefault(h => h.Id == 1);
@@ -131,9 +125,8 @@ namespace RegistrDisconnection.MyClasses
                 bool isNotSaturday = current.DayOfWeek != DayOfWeek.Saturday;
                 bool isNotSunday = current.DayOfWeek != DayOfWeek.Sunday;
 
-                if (existedHoliday == null && isNotFriday && isNotSaturday && isNotSunday /*&& isNotBetween1_10*/)
+                if (existedHoliday == null && isNotFriday && isNotSaturday && isNotSunday)
                 {
-                    //Console.WriteLine("Відключаємо абонента - " + current.Date.ToString("d"));
                     return current;
                 }
 
@@ -141,7 +134,12 @@ namespace RegistrDisconnection.MyClasses
             }
         }
 
-        //Утиліта для формування списку людей для попередження
+        /// <summary>
+        /// Утиліта для формування списку людей для попередження
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="vykonavets"></param>
+        /// <returns></returns>
         public static PrintPoper CreatePrintPoperFromActual(ActualDataPerson item, string vykonavets)
         {
             CultureInfo ukUa = new CultureInfo("uk-UA");
@@ -205,17 +203,16 @@ namespace RegistrDisconnection.MyClasses
             };
         }
 
-        //Утиліта для розрахунку сальда
+        /// <summary>
+        /// Утиліта для розрахунку сальда
+        /// </summary>
+        /// <param name="saldo"></param>
         public static void CalculateSaldo(Saldo saldo)
         {
-            //Так було для обєднаних борг і оплати за активну + викл/вкл
-            //decimal? narah = saldo.DebPoch + saldo.Narah + saldo.Recount + saldo.SumaVkl + saldo.SumaVykl;
             //Без активної е/е
             decimal? narah = saldo.DebPoch + saldo.SumaVkl + saldo.SumaVykl;
             decimal? oplat = saldo.KredPoch + saldo.Oplata;
             decimal? saldoEnd = narah - oplat;
-            //decimal? borgEE = saldo.Narah + saldo.Recount;
-            //decimal? oplataEE = saldo.Narah - saldo.BorgZaEE;
 
             saldo.DebKin = 0;
             saldo.KredKin = 0;
@@ -230,7 +227,11 @@ namespace RegistrDisconnection.MyClasses
             }
         }
 
-        //Утиліта для кодування паролів
+        /// <summary>
+        /// Утиліта для кодування паролів
+        /// </summary>
+        /// <param name="clearText"></param>
+        /// <returns></returns>
         public static string Encrypt(string clearText)
         {
             string EncryptionKey = "abc123";
@@ -251,7 +252,11 @@ namespace RegistrDisconnection.MyClasses
             return clearText;
         }
 
-        //Утиліта для розкодування паролів
+        /// <summary>
+        /// Утиліта для розкодування паролів
+        /// </summary>
+        /// <param name="cipherText"></param>
+        /// <returns></returns>
         public static string Decrypt(string cipherText)
         {
             string EncryptionKey = "abc123";
