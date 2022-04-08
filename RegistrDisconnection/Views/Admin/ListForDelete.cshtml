@@ -1,0 +1,57 @@
+﻿@using RegistrDisconnection.Models
+@using RegistrDisconnection.Models.Dictionaries
+
+@model RegistrDisconnection.ViewModels.DeleteAbon
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3>Видалення дублікатів.</h3>
+
+<form class="form" method="get">
+    <div class="form-row">
+        <div class="form-group">
+            <div class="input-group">
+                <div>
+                    <label for="direction" class="input-group-text">Виберіть ЦОК: </label>
+                </div>
+                <select name="cok" asp-items="Model.Cok" class="form-control">
+                </select>
+                <div>
+                    <input id="filtr" type="submit" name="filtr" value="Фільтр" class="btn btn-outline-dark mb-2" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+    <table class="table table-striped" id="myTable">
+        <thead>
+            <tr>
+                @*<th class="no-sort" style="text-align:center;"><input type="checkbox"></th>*@
+                <th>Код цоку</th>
+                <th>Особовий рахунок</th>
+                <th>Прізвище ім'я по-батькові</th>
+                <th>К-ть дублікатів</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (RegistrDisconnection.Models.Abonents.Person item in Model.People)
+            {
+                <tr>
+                    @*<td style="text-align:center;"><input type="checkbox"></td>*@
+                    <td>@item.Cok.Code</td>
+                    <td>@item.OsRah</td>
+                    <td>@item.FullName</td>
+                    <td>@item.OsRah.ToList().Count</td>
+                    <td>
+                        @*<a asp-controller="AbonDetails" asp-action="Index" asp-route-id="@item.Id">Детально</a> |*@
+                        @*<a href="@item.Person.EsLink()">Utility</a> |*@
+                        <a asp-action="Delete" asp-controller="Admin" asp-route-id="@item.Id">Видалити</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+

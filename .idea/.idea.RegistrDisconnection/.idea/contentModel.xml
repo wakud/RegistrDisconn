@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\val\.nuget\packages\bootstrap\4.5.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.css" t="Include" />
+    <e p="C:\Users\val\.nuget\packages\bootstrap\4.5.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.css.map" t="Include" />
+    <e p="C:\Users\val\.nuget\packages\bootstrap\4.5.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.min.css" t="Include" />
+    <e p="C:\Users\val\.nuget\packages\bootstrap\4.5.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.min.css.map" t="Include" />
+    <e p="C:\Users\val\.nuget\packages\bootstrap\4.5.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.css" t="Include" />
+    <e p="C:\Users\val\.nuget\packages\bootstrap\4.5.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.css.map" t="Include" />
+    <e p="C:\Users\val\.nuget\packages\bootstrap\4.5.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.min.css" t="Include" />
+    <e p="C:\Users\val\.nuget\packages\bootstrap\4.5.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.min.css.map" t="Include" />
+    <e p="C:\Users\val\.nuget\packages\bootstrap\4.5.3\contentFiles\any\any\wwwroot\css\bootstrap.css" t="Include" />
+    <e p="C:\Users\val\.nuget\packages\bootstrap\4.5.3\contentFiles\any\any\wwwroot\css\bootstrap.css.map" t="Include" />
+    <e p="C:\Users\val\.nuget\packages\bootstrap\4.5.3\contentFiles\any\any\wwwroot\css\bootstrap.min.css" t="Include" />
+    <e p="C:\Users\val\.nuget\packages\bootstrap\4.5.3\contentFiles\any\any\wwwroot\css\bootstrap.min.css.map" t="Include" />
+    <e p="C:\Users\val\.nuget\packages\bootstrap\4.5.3\contentFiles\any\any\wwwroot\js\bootstrap.bundle.js" t="Include" />
+    <e p="C:\Users\val\.nuget\packages\bootstrap\4.5.3\contentFiles\any\any\wwwroot\js\bootstrap.bundle.js.map" t="Include" />
+    <e p="C:\Users\val\.nuget\packages\bootstrap\4.5.3\contentFiles\any\any\wwwroot\js\bootstrap.bundle.min.js" t="Include" />
+    <e p="C:\Users\val\.nuget\packages\bootstrap\4.5.3\contentFiles\any\any\wwwroot\js\bootstrap.bundle.min.js.map" t="Include" />
+    <e p="C:\Users\val\.nuget\packages\bootstrap\4.5.3\contentFiles\any\any\wwwroot\js\bootstrap.js" t="Include" />
+    <e p="C:\Users\val\.nuget\packages\bootstrap\4.5.3\contentFiles\any\any\wwwroot\js\bootstrap.js.map" t="Include" />
+    <e p="C:\Users\val\.nuget\packages\bootstrap\4.5.3\contentFiles\any\any\wwwroot\js\bootstrap.min.js" t="Include" />
+    <e p="C:\Users\val\.nuget\packages\bootstrap\4.5.3\contentFiles\any\any\wwwroot\js\bootstrap.min.js.map" t="Include" />
+    <e p="C:\Users\val\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\val\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_RegistrDisconnection.1111664892.00" t="ExcludeRecursive" />
+    <e p="D:\my_project\c#\RegistrDisconn" t="IncludeFlat">
+      <e p=".editorconfig" t="Include" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="RegistrDisconnection" t="IncludeRecursive">
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Controllers" t="Include">
+          <e p="AbonDetails.cs" t="Include" />
+          <e p="AccountController.cs" t="Include" />
+          <e p="AdminController.cs" t="Include" />
+          <e p="BuhController.cs" t="Include" />
+          <e p="DirectionDictsController.cs" t="Include" />
+          <e p="GroupOfPoperController.cs" t="Include" />
+          <e p="HomeController.cs" t="Include" />
+          <e p="OrganizationController.cs" t="Include" />
+          <e p="PoperController.cs" t="Include" />
+          <e p="UkrPoshta.cs" t="Include" />
+          <e p="UsersController.cs" t="Include" />
+          <e p="VyhAndSviatsController.cs" t="Include" />
+          <e p="VyklController.cs" t="Include" />
+          <e p="VymogyController.cs" t="Include" />
+        </e>
+        <e p="Data" t="Include">
+          <e p="DbInitialization.cs" t="Include" />
+          <e p="MainContext.cs" t="Include" />
+        </e>
+        <e p="libman.json" t="Include" />
+        <e p="logs" t="Include">
+          <e p="stdout_20201204121450_2420.log" t="Include" />
+          <e p="stdout_20201204121625_24148.log" t="Include" />
+          <e p="stdout_20201204121700_22168.log" t="Include" />
+          <e p="stdout_20201204121751_18276.log" t="Include" />
+          <e p="stdout_20201204121841_7460.log" t="Include" />
+          <e p="stdout_20201204121919_5588.log" t="Include" />
+          <e p="stdout_20201204122024_13416.log" t="Include" />
+          <e p="stdout_20201204122125_13316.log" t="Include" />
+          <e p="stdout_20201204122147_26084.log" t="Include" />
+          <e p="stdout_20201204122356_23616.log" t="Include" />
+          <e p="stdout_20201228070349_11248.log" t="Include" />
+          <e p="stdout_20201228070717_5720.log" t="Include" />
+          <e p="stdout_20201228071051_14292.log" t="Include" />
+          <e p="stdout_20201228071110_10628.log" t="Include" />
+          <e p="stdout_20201228072530_15804.log" t="Include" />
+          <e p="stdout_20201228100003_10812.log" t="Include" />
+          <e p="stdout_20201228104052_15512.log" t="Include" />
+          <e p="stdout_20201228121337_15956.log" t="Include" />
+          <e p="stdout_20201228121503_15008.log" t="Include" />
+        </e>
+        <e p="Migrations" t="Include">
+          <e p="20201111080251_initial.cs" t="Include" />
+          <e p="20201111080251_initial.Designer.cs" t="Include" />
+          <e p="20201112074228_saldo_zakr_per.cs" t="Include" />
+          <e p="20201112074228_saldo_zakr_per.Designer.cs" t="Include" />
+          <e p="20201204120612_audit.cs" t="Include" />
+          <e p="20201204120612_audit.Designer.cs" t="Include" />
+          <e p="20201228064859_isload.cs" t="Include" />
+          <e p="20201228064859_isload.Designer.cs" t="Include" />
+          <e p="MainContextModelSnapshot.cs" t="Include" />
+        </e>
+        <e p="Models" t="Include">
+          <e p="Abonents" t="Include">
+            <e p="ActualDataPerson.cs" t="Include" />
+            <e p="Address.cs" t="Include" />
+            <e p="Finance.cs" t="Include" />
+            <e p="Lichylnyk.cs" t="Include" />
+            <e p="Person.cs" t="Include" />
+            <e p="Poperedgenia.cs" t="Include" />
+            <e p="Saldo.cs" t="Include" />
+            <e p="Vykl.cs" t="Include" />
+          </e>
+          <e p="Dictionaries" t="Include">
+            <e p="DirectionCityMap.cs" t="Include" />
+            <e p="DirectionDict.cs" t="Include" />
+            <e p="Options.cs" t="Include" />
+            <e p="Organization.cs" t="Include" />
+            <e p="VyhAndSviat.cs" t="Include" />
+          </e>
+          <e p="ErrorViewModel.cs" t="Include" />
+          <e p="Operations" t="Include">
+            <e p="LoadUtility.cs" t="Include" />
+            <e p="PoperDrukGroup.cs" t="Include" />
+            <e p="PrintPoper.cs" t="Include" />
+            <e p="UpdateFinance.cs" t="Include" />
+            <e p="UpdateGroup.cs" t="Include" />
+          </e>
+          <e p="Users" t="Include">
+            <e p="LoginModel.cs" t="Include" />
+            <e p="Prava.cs" t="Include" />
+            <e p="User.cs" t="Include" />
+          </e>
+          <e p="Zvity" t="Include">
+            <e p="Zvit1.cs" t="Include" />
+            <e p="ZvitVykl.cs" t="Include" />
+          </e>
+        </e>
+        <e p="MyClasses" t="Include">
+          <e p="BillingUtils.cs" t="Include" />
+          <e p="CitySelect.cs" t="Include" />
+          <e p="CreateAbonents.cs" t="Include" />
+          <e p="Excel.cs" t="Include" />
+          <e p="ExcelStyling.cs" t="Include" />
+          <e p="LoadDataCreator.cs" t="Include" />
+          <e p="MoneyToStr.cs" t="Include" />
+          <e p="PageLinkTagHelper.cs" t="Include" />
+          <e p="Period.cs" t="Include" />
+          <e p="SelectedGrouping.cs" t="Include" />
+          <e p="Utils.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="RegistrDisconnection.AssemblyInfo.cs" t="Include" />
+              <e p="RegistrDisconnection.RazorAssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+          <e p="PublishProfiles" t="Include">
+            <e p="FolderProfile.pubxml" t="Include" />
+          </e>
+        </e>
+        <e p="RegistrDisconnection.csproj" t="IncludeRecursive" />
+        <e p="Startup.cs" t="Include" />
+        <e p="ViewModels" t="Include">
+          <e p="AbonentVykl.cs" t="Include" />
+          <e p="DellNapr.cs" t="Include" />
+          <e p="EditSaldo.cs" t="Include" />
+          <e p="FilterNapr.cs" t="Include" />
+          <e p="FilterViewModel.cs" t="Include" />
+          <e p="FormHol.cs" t="Include" />
+          <e p="PageViewModel.cs" t="Include" />
+          <e p="PoperView.cs" t="Include" />
+          <e p="PrintPoperPostal.cs" t="Include" />
+          <e p="PrintVymogy.cs" t="Include" />
+          <e p="RahEndAkt.cs" t="Include" />
+          <e p="SortState.cs" t="Include" />
+          <e p="ViewArhiv.cs" t="Include" />
+        </e>
+        <e p="Views" t="Include">
+          <e p="_ViewImports.cshtml" t="Include" />
+          <e p="_ViewStart.cshtml" t="Include" />
+          <e p="AbonDetails" t="Include">
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Account" t="Include">
+            <e p="_Layout.cshtml" t="Include" />
+            <e p="Login.cshtml" t="Include" />
+          </e>
+          <e p="Admin" t="Include">
+            <e p="CancelW.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Buh" t="Include">
+            <e p="BuhIndex.cshtml" t="Include" />
+            <e p="Create.cshtml" t="Include" />
+            <e p="Delete.cshtml" t="Include" />
+            <e p="Details.cshtml" t="Include" />
+            <e p="Edit.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="DirectionDicts" t="Include">
+            <e p="Create.cshtml" t="Include" />
+            <e p="Delete.cshtml" t="Include" />
+            <e p="Details.cshtml" t="Include" />
+            <e p="Edit.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="GroupOfPoper" t="Include">
+            <e p="Delete.cshtml" t="Include" />
+            <e p="DeleteOne.cshtml" t="Include" />
+            <e p="Details.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Home" t="Include">
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Organization" t="Include">
+            <e p="Create.cshtml" t="Include" />
+            <e p="Delete.cshtml" t="Include" />
+            <e p="Details.cshtml" t="Include" />
+            <e p="Edit.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Poper" t="Include">
+            <e p="Abonents.cshtml" t="Include" />
+            <e p="Napr.cshtml" t="Include" />
+            <e p="UpdateFinance.cshtml" t="Include" />
+            <e p="UploadAbon.cshtml" t="Include" />
+            <e p="Zvit.cshtml" t="Include" />
+          </e>
+          <e p="Shared" t="Include">
+            <e p="_Layout.cshtml" t="Include" />
+            <e p="_Load.cshtml" t="Include" />
+            <e p="_ValidationScriptsPartial.cshtml" t="Include" />
+            <e p="Error.cshtml" t="Include" />
+          </e>
+          <e p="UkrPoshta" t="Include">
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Users" t="Include">
+            <e p="Create.cshtml" t="Include" />
+            <e p="Delete.cshtml" t="Include" />
+            <e p="Details.cshtml" t="Include" />
+            <e p="Edit.cshtml" t="Include" />
+            <e p="GetFreeDay.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+            <e p="UserInfo.cshtml" t="Include" />
+          </e>
+          <e p="VyhAndSviats" t="Include">
+            <e p="Create.cshtml" t="Include" />
+            <e p="Delete.cshtml" t="Include" />
+            <e p="Details.cshtml" t="Include" />
+            <e p="Edit.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Vykl" t="Include">
+            <e p="AddAbon.cshtml" t="Include" />
+            <e p="Create.cshtml" t="Include" />
+            <e p="Delete.cshtml" t="Include" />
+            <e p="Details.cshtml" t="Include" />
+            <e p="Edit.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Vymogy" t="Include">
+            <e p="Index.cshtml" t="Include" />
+          </e>
+        </e>
+        <e p="web.config" t="Include" />
+        <e p="wwwroot" t="Include">
+          <e p="css" t="Include">
+            <e p="site.css" t="Include" />
+          </e>
+          <e p="favicon.ico" t="Include" />
+          <e p="files" t="Include">
+            <e p="42145798_10_" t="Include" />
+            <e p="akt.docx" t="Include" />
+            <e p="conv.docx" t="Include" />
+            <e p="converty.docx" t="Include" />
+            <e p="poper.docx" t="Include" />
+            <e p="Rah.docx" t="Include" />
+            <e p="shablon.docx" t="Include" />
+            <e p="shablon_Akt.docx" t="Include" />
+            <e p="shablon_rah.docx" t="Include" />
+            <e p="suprovidDBF.docx" t="Include" />
+            <e p="suprovidna_DBF.docx" t="Include" />
+            <e p="vymoga.docx" t="Include" />
+            <e p="vymoga_.docx" t="Include" />
+          </e>
+          <e p="js" t="Include">
+            <e p="jquery.tablesort.js" t="Include" />
+            <e p="site.js" t="Include" />
+          </e>
+          <e p="lib" t="Include">
+            <e p="bootstrap" t="Include">
+              <e p="dist" t="Include">
+                <e p="css" t="Include">
+                  <e p="bootstrap-grid.css" t="Include" />
+                  <e p="bootstrap-grid.css.map" t="Include" />
+                  <e p="bootstrap-grid.min.css" t="Include" />
+                  <e p="bootstrap-grid.min.css.map" t="Include" />
+                  <e p="bootstrap-reboot.css" t="Include" />
+                  <e p="bootstrap-reboot.css.map" t="Include" />
+                  <e p="bootstrap-reboot.min.css" t="Include" />
+                  <e p="bootstrap-reboot.min.css.map" t="Include" />
+                  <e p="bootstrap.css" t="Include" />
+                  <e p="bootstrap.css.map" t="Include" />
+                  <e p="bootstrap.min.css" t="Include" />
+                  <e p="bootstrap.min.css.map" t="Include" />
+                </e>
+                <e p="js" t="Include">
+                  <e p="bootstrap.bundle.js" t="Include" />
+                  <e p="bootstrap.bundle.js.map" t="Include" />
+                  <e p="bootstrap.bundle.min.js" t="Include" />
+                  <e p="bootstrap.bundle.min.js.map" t="Include" />
+                  <e p="bootstrap.js" t="Include" />
+                  <e p="bootstrap.js.map" t="Include" />
+                  <e p="bootstrap.min.js" t="Include" />
+                  <e p="bootstrap.min.js.map" t="Include" />
+                </e>
+              </e>
+              <e p="LICENSE" t="Include" />
+            </e>
+            <e p="jquery" t="Include">
+              <e p="dist" t="Include">
+                <e p="jquery.js" t="Include" />
+                <e p="jquery.min.js" t="Include" />
+                <e p="jquery.min.map" t="Include" />
+              </e>
+              <e p="LICENSE.txt" t="Include" />
+            </e>
+            <e p="jquery-validation" t="Include">
+              <e p="dist" t="Include">
+                <e p="additional-methods.js" t="Include" />
+                <e p="additional-methods.min.js" t="Include" />
+                <e p="jquery.validate.js" t="Include" />
+                <e p="jquery.validate.min.js" t="Include" />
+              </e>
+              <e p="LICENSE.md" t="Include" />
+            </e>
+            <e p="jquery-validation-unobtrusive" t="Include">
+              <e p="jquery.validate.unobtrusive.js" t="Include" />
+              <e p="jquery.validate.unobtrusive.min.js" t="Include" />
+              <e p="LICENSE.txt" t="Include" />
+            </e>
+          </e>
+          <e p="Scripts" t="Include">
+            <e p="City.sql" t="Include" />
+            <e p="CityById.sql" t="Include" />
+            <e p="proga_vykl.sql" t="Include" />
+            <e p="UpdatePoper.sql" t="Include" />
+            <e p="Zvit1.sql" t="Include" />
+            <e p="запит_місто.sql" t="Include" />
+            <e p="запит_райони.sql" t="Include" />
+            <e p="Пошук відключених_місто.sql" t="Include" />
+            <e p="Пошук відключених_район.sql" t="Include" />
+          </e>
+          <e p="інструкції" t="Include">
+            <e p="Word" t="Include">
+              <e p="Inheritance.cs.docx" t="Include" />
+              <e p="Model.cs.docx" t="Include" />
+              <e p="Model.docx" t="Include" />
+              <e p="Tutorial.cs.docx" t="Include" />
+              <e p="Tutorial.docx" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="RegistrDisconnection.sln" t="IncludeFlat" />
+      <e p="Solution Items" t="Include" />
+    </e>
+  </component>
+</project>

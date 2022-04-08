@@ -1,0 +1,95 @@
+﻿@model IEnumerable<RegistrDisconnection.Models.Dictionaries.VyhAndSviat>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Вихідні і святкові дні</h1>
+
+<p>
+    <a asp-action="Create">Добавити новий</a>
+    @if (ViewBag.error != null)
+    {
+        @if (ViewBag.error == "NoRight")
+        {
+            <script>
+                setTimeout(() => alert("Ви не маєте права, зверніться до розробника!"), 500);
+            </script>
+        }
+    }
+</p>
+
+@{
+    var showCheck = "";
+    if (ViewData["checked"] != null)
+    {
+        showCheck = "checked";
+    }
+}
+<form name="checkForm" class="form-inline" method="post">
+    <input class="form-check-input" onchange="submitForm();"
+           name="ShowAll"
+           @showCheck
+           type="checkbox"
+           id="checkShowAll">
+    <label class="form-check-label" for="checkShowAll">
+        Показати усі
+    </label>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            @*<th>
+                    Дата
+                </th>*@
+            <th>
+                Рік
+            </th>
+            <th>
+                Місяць
+            </th>
+            <th>
+                День
+            </th>
+            <th>
+                Назва свята
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Month)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Day)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Змінити</a> |
+                    @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                    <a asp-action="Delete" asp-route-id="@item.Id">Видалити</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<script>
+    function submitForm() {
+        document.checkForm.submit();
+    }
+</script>

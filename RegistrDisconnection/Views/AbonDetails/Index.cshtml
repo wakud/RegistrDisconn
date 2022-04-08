@@ -1,0 +1,115 @@
+﻿@model RegistrDisconnection.Models.Abonents.ActualDataPerson
+
+@{
+    ViewData["Title"] = "Загальні дані";
+}
+
+<div>
+    <h4>Загальні дані</h4>
+    <hr />
+    <table style="width:100%;">
+        <tr>
+            <td>Статус абонета в програмі:</td>
+            <td>
+                <input id="status_id"
+                       type="checkbox"
+                       onchange="statusChange()"
+                       class="control-input"
+                       @(Model.Person.StatusAktyv ? "checked" : "")>
+            </td>
+        </tr>
+        <tr>
+            <td>Особовий рахунок:</td>
+            <td><b>@Html.DisplayFor(model => model.Person.OsRah)</b></td>
+        </tr>
+        <tr>
+            <td>Прізвище, Ім'я, по батькові:</td>
+            <td><b>@Html.DisplayFor(model => model.Person.FullName)</b></td>
+        </tr>
+        <tr>
+            <td>Адреса проживання:</td>
+            <td><b>@Html.DisplayFor(model => model.Person.FullAddress)</b></td>
+        </tr>
+        <tr>
+            <td>Мобільний телефон:</td>
+            <td><b>@Html.DisplayFor(model => model.Person.MobilePhoneNumber)</b></td>
+        </tr>
+    </table>
+    <hr />
+    <h4>Лічильник</h4>
+    <table style="width:100%;">
+        <tr>
+            <td>Номер лічильника:</td>
+            <td><b>@Html.DisplayFor(model => model.Lichylnyk.Number)</b></td>
+        </tr>
+        <tr>
+            <td>ЕІС:</td>
+            <td><b>@Html.DisplayFor(model => model.Lichylnyk.EIS)</b></td>
+        </tr>
+    </table>
+    <hr />
+    <h4>Стан розрахунків</h4>
+    <table>
+        <tr>
+            <td>
+                <font color="#FF0000">
+                    <b>Просрочений борг: @Html.DisplayFor(model => model.Finance.DebPoch)</b>
+                </font>
+            </td>
+        </tr>
+    </table>
+    <hr />
+    <h4>Стан точки обліку</h4>
+    <table>
+        <tr>
+            <td>Коли видано попередження:</td>
+            <td><b>@Html.DisplayFor(model => model.Poperedgenia.Poper)</b></td>
+        </tr>
+        <tr>
+            <td>Прогнозована дата припинення е/е:</td>
+            <td><b>@Html.DisplayFor(model => model.Poperedgenia.DateVykl)</b></td>
+        </tr>
+        <tr>
+            <td>Дата припинення електропостачання:</td>
+            <td><b>@Html.DisplayFor(model => model.Vykl.DateVykl)</b></td>
+        </tr>
+        @*<tr>
+                <td>Чи відключено абонента?:</td>
+                <td><b>@Html.DisplayFor(model => model.vykl.Status)</b></td>
+            </tr>*@
+        <tr>
+            <td>Чи відключено абонента?:</td>
+            <td>
+                @if (Model.Vykl.Status == true)
+                    {
+                <span class="badge badge-secondary">
+                    Відключений
+                </span>
+                    }
+            </td>
+        </tr>
+    </table>
+</div>
+<form>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <div class="alert alert-primary" role="alert">
+                <b><a asp-controller="Poper" asp-action="Abonents">Повернутися до списку абонентів</a></b>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <div class="alert alert-info" role="alert">
+                <b><a asp-controller="Poper" asp-action="Napr">До списку друку по напрямках</a></b>
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts {
+    <script>
+    function statusChange() {
+        let inputStatus = document.getElementById("status_id");
+        const checked = inputStatus.checked ? 1 : 0;
+        fetch(`/Poper/SetActivePerson/@Model.Person.Id?status=${checked}`);
+    }
+    </script>
+}

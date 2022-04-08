@@ -1,0 +1,31 @@
+﻿@model RegistrDisconnection.Models.Dictionaries.DirectionDict
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3>Видалення напрямку</h3>
+<div>
+    <h4>DirectionDict</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cok)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cok.Id)
+        </dd class>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Видалити" class="btn btn-danger" /> |
+        <a asp-action="Index">Повернктися до списку напрямків</a>
+    </form>
+</div>

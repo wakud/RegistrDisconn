@@ -1,0 +1,98 @@
+﻿@model RegistrDisconnection.ViewModels.ViewArhiv
+
+@{
+    ViewData["Title"] = "BuhIndex";
+}
+
+<h1>Сальдовка по ЦОКах</h1>
+
+<div class="form-group">
+    <div class="alert alert-info" role="alert">
+        <span class="sr-only">Toggle navigation</span>
+        <div class="row">
+            <div class="col">
+                <label>Календарний період: <strong>@Model.PeriodStr</strong></label>
+            </div>
+            <div class="col">
+                @if (ViewBag.error != null && ViewBag.error == "NotZakrPer")
+                {
+                    <label style="color:crimson">Не закритий період: <strong>@Model.ZakrPeriod</strong></label>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<form class="form" method="get">
+    <div class="row">
+        <div class="col-7">
+            <div class="form-row">
+                <div class="form-group">
+                    <div class="input-group">
+                        <label class="btn">Виберіть період: </label>
+                        <input type="month" id="myDatepicker" name="myDatepicker" class="form-control" value="@Model.SearchPeriod" />
+                        <input id="filtr" type="submit" name="filtr" value="Пошук" class="btn btn-outline-dark mb-2" />
+                        <a href="@Url.Action("Zvit", "Buh", new { myDatepicker = Model.SearchPeriod })" name="zvit" class="btn btn-outline-dark mb-2">Експорт в Excel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                ЦОК
+            </th>
+            <th>
+                Дебет на початок
+            </th>
+            <th>
+                Кредит на початок
+            </th>
+            <th>
+                Нараховано
+            </th>
+            <th>
+                Оплачено
+            </th>
+            <th>
+                Дебет на кінець
+            </th>
+            <th>
+                Кредит на кінець
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Selected.Values) {
+        <tr>
+            <td>
+                @item.Cok
+            </td>
+            <td>
+                @item.DebStart
+            </td>
+            <td>
+                @item.CredStart
+            </td>
+            <td>
+                @item.Narah
+            </td>
+            <td>
+                @item.Opl
+            </td>
+            <td>
+                @item.DebEnd
+            </td>
+            <td>
+                @item.CredEnd
+            </td>
+            <td>
+                <a href="@Url.Action("Index", "Buh", new { myDatepicker = Model.SearchPeriod, CokId = item.CokId })" class="btn btn-info btn-sm">Детально</a>
+            </td>
+        </tr>
+    }
+        </tbody>
+    </table>

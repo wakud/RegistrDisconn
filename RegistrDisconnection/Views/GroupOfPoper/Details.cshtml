@@ -1,0 +1,42 @@
+﻿@model RegistrDisconnection.ViewModels.FilterNapr
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <h4>Список абонентів по напрямку </h4>
+</div>
+<form class="form" method="get">
+    <table class="table table-striped">
+        <tr>
+            <th>Особовий рахунок</th>
+            <th>Прізвище ім'я по-батькові</th>
+            <th>Адреса проживання</th>
+            <th>Борг</th>
+            <th>Попередження</th>
+            <th>Напрямок</th>
+            <th>Операції</th>
+        </tr>
+
+        @foreach (var item in Model.People)
+        {
+            <tr>
+                <td>@item.Person.OsRah</td>
+                <td>@item.Person.FullName</td>
+                <td>@item.Person.FullAddress</td>
+                <td>@item.Finance.DebPoch</td>
+                <td>@item.Poperedgenia.Poper</td>
+                <td>@item.Person.Address.Direction.Name</td>
+                <td>
+                    <a asp-controller="GroupOfPoper" asp-action="DeleteOne" asp-route-id="@item.Person.Id">Відмінити</a>
+                </td>
+            </tr>
+        }
+    </table>
+</form>
+
+    <div>
+        @*<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |*@
+        <a asp-action="Index">До списку попереджень</a>
+    </div>

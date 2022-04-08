@@ -1,0 +1,115 @@
+﻿@using RegistrDisconnection.Models
+@using RegistrDisconnection.Models.Dictionaries
+
+@model RegistrDisconnection.ViewModels.FilterNapr
+
+@{
+    ViewBag.Title = "Друк по напрямках";
+}
+<h4>Друк по напрямках</h4>
+
+<form class="form" method="get">
+    <div class="row">
+        <div class="col-7">
+            <div class="form-row">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="name">Пошук по особовому або ПІП: </label>
+                        </div>
+                        <input id="search" name="name" class="form-control" value="@Model.Name" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div>
+                            <label for="direction" class="input-group-text">Напрямок: </label>
+                        </div>
+                        <select name="direction" asp-items="Model.Directions" class="form-control">
+                        </select>
+                        <div>
+                            <input id="filtr" type="submit" name="filtr" value="Фільтр" class="btn btn-outline-dark mb-2" />
+                        </div>
+                    </div>
+                    @*<div>
+                        <input type="checkbox" id="checkbox1"> Корекція дати відключення
+                        <input type="date" id="myDatepicker" name="myDatepicker" class="form-control" value="@DateTime.Now" />
+                    </div>*@
+                </div>
+            </div>
+        </div>
+        <div class="col-5">
+            <div class="form-row">
+                <input type="submit" name="word" value="Друк попередження" class="btn btn-outline-dark mb-2" />
+                @if (ViewBag.error != null)
+                {
+                    @if (ViewBag.error == "BadDir")
+                    {
+                        <script>
+                            setTimeout(() => alert("Ви не вибрали напрямок!"), 500);
+                        </script>
+                    }
+                }
+                <input type="submit" name="converty" value="Для Укрпошти" class="btn btn-outline-dark mb-2" />
+                <input type="submit" name="Vymogy" value="Вимоги" class="btn btn-outline-dark mb-2" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<table class="table table-striped" id="myTable">
+    <thead>
+        <tr>
+            @*<th class="no-sort" style="text-align:center;"><input type="checkbox"></th>*@
+            <th>Особовий рахунок</th>
+            <th>Прізвище ім'я по-батькові</th>
+            <th>Адреса проживання</th>
+            <th class="number">Завантажений Борг</th>
+            <th class="number">Поточний Борг</th>
+            <th class="date">Дата попередження</th>
+            <th class="date">Дата відключення</th>
+            <th>Напрямок</th>
+            <th>Операції</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (RegistrDisconnection.Models.Abonents.ActualDataPerson item in Model.People)
+        {
+        <tr>
+            @*<td style="text-align:center;"><input type="checkbox"></td>*@
+            <td>@item.Person.OsRah</td>
+            <td>@item.Person.FullName</td>
+            <td>@item.Person.FullAddress</td>
+            <td>@item.Finance.DebLoad</td>
+            <td>@item.Finance.DebPoch</td>
+            <td>@String.Format("{0:dd/MM/yyyy}", item.Poperedgenia.Poper)</td>
+            <td>@String.Format("{0:dd/MM/yyyy}", item.Poperedgenia.DateVykl)</td>
+            <td>@item.Person.Address.Direction.Name</td>
+            <td>
+                <a asp-controller="AbonDetails" asp-action="Index" asp-route-id="@item.Id">Детально</a> |
+                <a href="@item.Person.EsLink()">Utility</a> |
+                <a asp-controller="GroupOfPoper"
+                    asp-action="DeleteOne"
+                    asp-route-id="@item.Id"
+                    asp-route-returnToController="Poper"
+                    asp-route-returnToAction="Napr"
+                    asp-route-direction="@item.Person.Address.Direction.Id">Видалити</a>
+            </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $('#checkbox1').click(function () {
+            if ($(this).is(':checked')) {
+                $('#myDatepicker').removeAttr('disabled');
+            } else {
+                $('#myDatepicker').attr('disabled', 'disabled');
+            }
+        });
+    </script>
+}

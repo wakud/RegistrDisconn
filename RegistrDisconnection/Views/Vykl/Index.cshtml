@@ -1,0 +1,141 @@
+﻿@model RegistrDisconnection.ViewModels.AbonentVykl
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Список абонентів на відновлення електропостачання</h1>
+
+<div class="form-group">
+    <div class="alert alert-success" role="alert">
+        <span class="sr-only">Toggle navigation</span>
+        <div class="row">
+            <div class="col">
+                <label>Активний період: <strong>@Model.PeriodStr</strong></label>
+            </div>
+            <div class="col">
+                @if (ViewBag.error != null && ViewBag.error == "NotZakrPer")
+                {
+                    <label style="color:crimson">Не закритий період: <strong>@Model.ZakrPeriod</strong></label>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<form class="form-inline" asp-action="Create">
+    <div class="row">
+        <div class="col-1">
+            <label for="OsRah" class="control-label">Введіть</label>
+        </div>
+        <div class="col-3">
+            <input id="OsRah" name="OsRah" class="form-control" placeholder="Особовий рахунок" />
+        </div>
+        <div class="col-3">
+            <input onclick="loadPage()" type="submit" value="Добавити/Пошук" class="btn btn-outline-info" />
+            @if (TempData["error"] != null && TempData["error"].ToString().Trim() == "BadOs".ToString().Trim())
+            {
+                <script>
+                    setTimeout(() => alert("Введіть особовий абонента!"), 500);
+                </script>
+            }
+            @if (TempData["error"] != null && TempData["error"].ToString().Trim() == "Netu".ToString().Trim())
+            {
+                <script>
+                    setTimeout(() => alert("Особовий рахунок не знайдено!"), 500);
+                </script>
+            }
+        </div>
+        <div class="col-5">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button onclick="loadPage('@Url.Action("Update", "Vykl")')" type="button" class="btn btn-outline-info mb-2">Оновити борг за е/е</button>
+                <button onclick="closePeriod()" type="button" class="btn btn-outline-info mb-2">Закрити період</button>
+                @if (TempData["error"] != null && TempData["error"].ToString().Trim() == "BadPeriod".ToString().Trim())
+                {
+                    <script>
+                        setTimeout(() => alert("Не можливо закрити період!"), 500);
+                    </script>
+                }
+                @*<a href="@Url.Action("Zvit", "Vykl")" name="zvit" class="btn btn-outline-info mb-2">Експорт в Excel</a>*@
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    function closePeriod() {
+        if (confirm("Увага ви справді хочете закрити період?")){
+            loadPage('@Url.Action("ClosePeriod", "Vykl")');
+        }
+    }
+</script>
+<table class="table" data-toggle="table">
+    <thead>
+        <tr>
+            <th>Особовий рахунок</th>
+            <th>ПІП</th>
+            <th>Адреса</th>
+            <th>Дт на початок</th>
+            <th>Кт на початок</th>
+            <th>Борг за е/е</th>
+            <th>Оплата за е/е</th>
+            <th>Сума відкл.</th>
+            <th>Сума підкл.</th>
+            <th>Оплата вк/викл</th>
+            <th>Дт на кінець</th>
+            <th>Кт на кінець</th>
+            <th>Операції</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (RegistrDisconnection.Models.Abonents.ActualDataPerson item in Model.MainContext)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.OsRah)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.FullAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Saldo.DebPoch)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Saldo.KredPoch)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Saldo.BorgZaEE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Saldo.OplataZaEE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Saldo.SumaVykl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Saldo.SumaVkl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Saldo.Oplata)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Saldo.DebKin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Saldo.KredKin)
+            </td>
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Змінити</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Детально</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Видалити</a> |
+                <a href="@item.Person.EsLink()">Utility</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

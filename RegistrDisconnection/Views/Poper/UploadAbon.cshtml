@@ -1,0 +1,37 @@
+﻿@model IEnumerable<RegistrDisconnection.Models.Abonents.ActualDataPerson>
+@{
+    ViewData["Title"] = "Завантаження боржників";
+}
+
+<h3>Завантаження абонентів на відключення.</h3>
+
+@if (Model != null)
+{
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Особовий рахунок</th>
+                    <th>Прізвище ім'я по-батькові</th>
+                    <th>Адреса проживання</th>
+                    <th>Борг</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Person.OsRah)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Person.FullName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Person.FullAddress)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Finance.DebPoch)</td>
+                        <td>
+                            <a target="_blank" asp-controller="AbonDetails" asp-action="Index" asp-route-id="@item.Person.Id">Детально</a> |
+                            <a href="@item.Person.EsLink()">Utility</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+}
+
+

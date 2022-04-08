@@ -1,0 +1,31 @@
+﻿@model RegistrDisconnection.Models.Abonents.ActualDataPerson
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3>Видалити?</h3>
+<div class="alert alert-primary" role="alert">
+    <h6>
+        Особовий рахунок: <b>@Html.DisplayFor(model => model.Person.OsRah)</b>
+        @if (Model.Vykl.Status == true)
+        {
+            <span class="badge badge-secondary">
+                Відключений @Html.DisplayFor(model => model.Vykl.DateVykl)
+            </span>
+        }
+    </h6>
+</div>
+<div class="alert alert-secondary" role="alert">
+    ПІП: <b>@Html.DisplayFor(model => model.Person.FullName)</b>
+</div>
+<div class="alert alert-success" role="alert">
+    Адреса проживання: <b>@Html.DisplayFor(model => model.Person.FullAddress)</b>
+</div>
+<hr />
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Видалити" class="btn btn-danger" /> |
+    <a asp-action="Index">Повернутися до списку абонентів</a>
+</form>

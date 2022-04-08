@@ -1,0 +1,55 @@
+﻿@model IEnumerable<RegistrDisconnection.Models.Operations.PoperDrukGroup>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>Відміна виданих попереджень по напрямках</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Напрямок
+            </th>
+            <th>
+                К-ть абонентів
+            </th>
+            <th>
+                Коли видане попередження
+            </th>
+            <th>
+                Станом на
+            </th>
+            <th>
+                Прогнозована дата відключення
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DirectionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountAbon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VydanePoper)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stanomna)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vykl)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Детально</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Відмінити</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

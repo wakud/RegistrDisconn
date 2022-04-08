@@ -1,0 +1,62 @@
+﻿@model IEnumerable<RegistrDisconnection.Models.Operations.PoperDrukGroup>
+
+@{
+    ViewData["Title"] = "Vymogy";
+}
+
+<h4>Друк вимог на попередження і відключення згідно виданих попереджень</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Напрямок
+            </th>
+            <th>
+                К-ть абонентів
+            </th>
+            <th>
+                Коли видане попередження
+            </th>
+            <th>
+                Станом на
+            </th>
+            <th>
+                Прогнозована дата відключення
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DirectionName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CountAbon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VydanePoper)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stanomna)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vykl)
+                </td>
+                <td>
+                    <a asp-action="poperVymoga" asp-route-id="@item.Id">Друкувати</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<form>
+    <div class="form-group col-md-6">
+        <div class="alert alert-info" role="alert">
+            <b><a asp-controller="Poper" asp-action="Napr">До списку друк по напрямках</a></b>
+        </div>
+    </div>
+</form>

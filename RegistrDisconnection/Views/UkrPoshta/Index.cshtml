@@ -1,0 +1,97 @@
+﻿@model IEnumerable<RegistrDisconnection.Models.Operations.PoperDrukGroup>
+
+@{
+    ViewData["Title"] = "UkrPoshta";
+}
+
+<h4>Формування конвертів і DBF-файла для "УкрПошти" згідно виданих попереджень</h4>
+
+<form name="myForm">
+    <select onchange="changeOption()" id="typLista" name="typLista">
+        <option value="24" selected>Без відмітки</option>
+        @*<option value="22,50">СМС-повідомлення</option>*@
+        <option value="41">Рекомендованим з повідомленням</option>
+    </select>
+</form>
+<div id="selection"></div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Напрямок
+            </th>
+            <th>
+                К-ть абонентів
+            </th>
+            <th>
+                Коли видане попередження
+            </th>
+            <th>
+                Станом на
+            </th>
+            <th>
+                Дата відключення
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DirectionName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CountAbon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VydanePoper)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stanomna)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vykl)
+                </td>
+                <td>
+                    <a asp-action="Converty" asp-route-id="@item.Id">Друк конвертів</a> |
+                    <a asp-action="DBF" asp-route-id="@item.Id">Формувати DBF</a> |
+                    <a class="suprovidna" asp-action="suprDBF" asp-route-id="@item.Id">Супровідна до DBF</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<form>
+    <div class="form-group col-md-6">
+        <div class="alert alert-info" role="alert">
+            <b><a asp-controller="Poper" asp-action="Napr">До списку друку по напрямках</a></b>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+
+        $("document").ready(() => {
+            let route = $(".suprovidna");
+            route.each((idx, el) => el.href += "?price=24");    //вартість по замовчуванню
+        });
+
+        function changeOption() {
+            let selection = $("#typLista");
+            let price = selection.val();
+            let route = $(".suprovidna");
+            route.each(
+                (idx, el) => {
+                    el.href = el.href.slice(0, el.href.indexOf("price=")) + `price=${price}`;
+            });
+        }
+
+    </script>
+
+}
+

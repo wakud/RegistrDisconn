@@ -1,0 +1,49 @@
+﻿@model IEnumerable<RegistrDisconnection.Models.Operations.UpdateFinance>
+
+@{
+    ViewData["Title"] = "UpdateFinance";
+}
+
+<h1>Список оновлених боргів абонентів</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Особовий рахунок
+            </th>
+            <th>
+                Прізвище ім'я по-батькові
+            </th>
+            <th>
+                Попередній борг
+            </th>
+            <th>
+                Поточний борг
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Person.OsRah)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Person.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrevFinanceSum)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NextFinanceSum)
+                        </td>
+                        <td>
+                            <a target="_blank" asp-controller="AbonDetails" asp-action="Index" asp-route-id="@item.Person.Id">Детально</a> |
+                            <a href="@item.Person.EsLink()">Utility</a>
+                        </td>
+                    </tr>
+            }
+    </tbody>
+</table>

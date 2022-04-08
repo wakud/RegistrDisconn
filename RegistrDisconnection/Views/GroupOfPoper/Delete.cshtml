@@ -1,0 +1,48 @@
+﻿@model RegistrDisconnection.Models.Operations.PoperDrukGroup
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3>Відмінити попередження видані</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Напрямок:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DirectionName)
+        </dd>
+        <dt class="col-sm-2">
+            Кількість абонентів:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CountAbon)
+        </dd>
+        <dt class="col-sm-2">
+            Видане попередження:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.VydanePoper)
+        </dd>
+        <dt class="col-sm-2">
+            Станом на:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Stanomna)
+        </dd>
+        <dt class="col-sm-2">
+            Прогнозована дата відключення:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Vykl)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Видалити" class="btn btn-danger" /> |
+        <a asp-action="Index">Повернутися до списку</a>
+    </form>
+</div>

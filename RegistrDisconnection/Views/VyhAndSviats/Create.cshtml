@@ -1,0 +1,57 @@
+﻿@model RegistrDisconnection.Models.Dictionaries.VyhAndSviat
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Добавити день</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div name="NewDate" asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @*<div class="form-group">
+                    <label asp-for="Date" class="control-label">Виберіть дату </label>
+                    <input type="date" id="davaToday">
+                </div>*@
+                <div class="form-group">
+                    <label asp-for="Year" class="control-label">Рік</label>
+                    <input asp-for="Year" class="form-control" />
+                    <span asp-validation-for="Year" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Month" class="control-label">Місяць</label>
+                    <input asp-for="Month" class="form-control" />
+                    <span asp-validation-for="Month" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Day" class="control-label">День</label>
+                    <input asp-for="Day" class="form-control" />
+                    <span asp-validation-for="Day" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Назва</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Добавити" class="btn btn-primary" />
+                </div>
+</form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Повернутись до списку</a>
+</div>
+
+<script>
+    document.getElementById('davaToday').valueAsDate = new Date();   //передали в календар на форму теперішню дату
+    
+    //var dd = document.getDate('davaToday');
+    //var mm = document.getMonth('davaToday') +1; //January is 0!
+    var yyyy = document.getFullYear('davaToday');
+    document.getElementById("year");
+
+</script>

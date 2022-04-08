@@ -1,0 +1,54 @@
+﻿@model IEnumerable<RegistrDisconnection.Models.Abonents.ActualDataPerson>
+@{
+    ViewData["Title"] = "Завантаження боржників";
+}
+
+<h3>Завантаження абонентів, які відключені.</h3>
+
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Особовий рахунок</th>
+                <th>Прізвище ім'я по-батькові</th>
+                <th>Адреса проживання</th>
+                <th>Борг за активну електроенергію</th>
+                <th>Дата відключення</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                @if (item.Finance.DebPoch == 0)
+                {
+                    <tr class="alert-success" role="alert">
+                        <td>@Html.DisplayFor(modelItem => item.Person.OsRah)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Person.FullName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Person.FullAddress)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Finance.DebPoch)</td>
+                        <td>@Html.ValueFor(modelItem => item.Vykl.DateVykl, "{0:dd/MM/yyyy}")</td>
+                        <td>
+                            <a target="_blank" asp-controller="Vykl" asp-action="Details" asp-route-id="@item.Id">Детально</a> |
+                            <a href="@item.Person.EsLink()">Utility</a>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    <tr class="alert-light" role="alert">
+                        <td>@Html.DisplayFor(modelItem => item.Person.OsRah)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Person.FullName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Person.FullAddress)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Finance.DebPoch)</td>
+                        <td>@Html.ValueFor(modelItem => item.Vykl.DateVykl, "{0:dd/MM/yyyy}")</td>
+                        <td>
+                            <a target="_blank" asp-controller="Vykl" asp-action="Details" asp-route-id="@item.Id">Детально</a> |
+                            <a href="@item.Person.EsLink()">Utility</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}

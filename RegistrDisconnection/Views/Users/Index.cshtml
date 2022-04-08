@@ -1,0 +1,72 @@
+﻿@using RegistrDisconnection.MyClasses
+@model IEnumerable<RegistrDisconnection.Models.Users.User>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Список користувачів</h1>
+
+<p>
+    <a asp-action="Create">Добавити нового користувача</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ПІП
+            </th>
+            <th>
+                Логін
+            </th>
+            <th>
+                Пароль
+            </th>
+            <th>
+                ЦОК
+            </th>
+            <th>
+                Права
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Login)
+                </td>
+                <td>
+                    @{
+                        string decryptedData = Utils.Decrypt(item.Password);
+                        @Html.DisplayFor(modelItem => decryptedData)
+                    }
+                </td>
+                <td>
+                    @if (item.Cok != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.Cok.Name)
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prava.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info">Змінити</a>
+                    @*<a asp-action="Details" asp-route-id="@item.Id">Детально</a> |*@
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Видалити</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

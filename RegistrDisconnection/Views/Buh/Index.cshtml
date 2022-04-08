@@ -1,0 +1,134 @@
+﻿@model RegistrDisconnection.ViewModels.ViewArhiv
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Сальдовка по абонентах</h1>
+
+<div class="form-group">
+    <div class="alert alert-warning" role="alert">
+        <span class="sr-only">Toggle navigation</span>
+        <div class="row">
+            <div class="col">
+                <label>Календарний період: <strong>@Model.PeriodStr</strong></label>
+            </div>
+            <div class="col">
+                @if (ViewBag.error != null && ViewBag.error == "NotZakrPer")
+                {
+                    <label style="color:crimson">Не закритий період: <strong>@Model.ZakrPeriod</strong></label>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<form class="form" method="get">
+    <div class="row">
+        <div class="col-7">
+            <div class="form-row">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input id="search" name="name" class="form-control" value="@Model.Name" placeholder="Ос. рах. або ПІП" />
+                        <label class="btn">Виберіть період: </label>
+                        <input type="month" id="myDatepicker" name="myDatepicker" class="form-control" value="@Model.SearchPeriod" />
+                        <input id="filtr" type="submit" name="filtr" value="Пошук" class="btn btn-outline-dark mb-2" />
+                        @if (Context.Request.Query.ContainsKey("CokId"))
+                        {
+                            <input type="hidden" name="CokId" value="@Context.Request.Query["CokId"]" />
+                        }
+                        <a href="@Url.Action("Zvit", "Buh", new { myDatepicker = Model.SearchPeriod, CokId = @Context.Request.Query["CokId"] })" name="zvit"  class="btn btn-outline-dark mb-2">Експорт в Excel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Особовий рахунок
+            </th>
+            <th>
+                ПІП
+            </th>
+            <th>
+                Адреса
+            </th>
+            <th>
+                Дт на початок
+            </th>
+            <th>
+                Кт на початок
+            </th>
+            <th>
+                Сума викл.
+            </th>
+            <th>
+                Сума вкл.
+            </th>
+            <th>
+                Оплата
+            </th>
+            <th>
+                Дт на кінець
+            </th>
+            <th>
+                Кт на кінець
+            </th>
+            <th>
+                Період
+            </th>
+            <th>
+                Операції
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.MainContexts)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Person.OsRah)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Person.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Person.FullAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DebPoch)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KredPoch)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SumaVykl)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SumaVkl)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Oplata)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DebKin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KredKin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AktPeriod)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.PersonId" class="btn btn-info btn-sm">Детально</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Видалити</a>
+                    <a href="@item.Person.EsLink()" class="btn btn-secondary btn-sm">Utility</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

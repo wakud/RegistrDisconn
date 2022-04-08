@@ -1,0 +1,54 @@
+﻿@model RegistrDisconnection.Models.Abonents.ActualDataPerson
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>ActualDataPerson</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="LoadSum" class="control-label"></label>
+                <input asp-for="LoadSum" class="form-control" />
+                <span asp-validation-for="LoadSum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PersonId" class="control-label"></label>
+                <select asp-for="PersonId" class ="form-control" asp-items="ViewBag.PersonId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="FinanceId" class="control-label"></label>
+                <select asp-for="FinanceId" class ="form-control" asp-items="ViewBag.FinanceId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="LichylnykId" class="control-label"></label>
+                <select asp-for="LichylnykId" class ="form-control" asp-items="ViewBag.LichylnykId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PoperedgeniaId" class="control-label"></label>
+                <select asp-for="PoperedgeniaId" class ="form-control" asp-items="ViewBag.PoperedgeniaId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="VyklId" class="control-label"></label>
+                <select asp-for="VyklId" class ="form-control" asp-items="ViewBag.VyklId"></select>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="TmpSaldoId" class="control-label"></label>
+                <select asp-for="TmpSaldoId" class ="form-control" asp-items="ViewBag.TmpSaldoId"></select>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

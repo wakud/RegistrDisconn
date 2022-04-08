@@ -1,0 +1,86 @@
+﻿@using RegistrDisconnection.Models.Abonents
+
+@model RegistrDisconnection.ViewModels.FilterViewModel
+
+@*@model RegistrDisconnection.Models.Abonents.ActualDataPerson*@
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3>Відмінити видане попередження абоненту?</h3>
+<div>
+    <hr />
+    <div>
+        <h4>Загальні дані</h4>
+        <hr />
+        <table style="width:100%;">
+            <tr>
+                <td>Особовий рахунок:</td>
+                <td><b>@Html.DisplayFor(model => model.DataPerson.Person.OsRah)</b></td>
+            </tr>
+            <tr>
+                <td>Прізвище, Ім'я, по батькові:</td>
+                <td><b>@Html.DisplayFor(model => model.DataPerson.Person.FullName)</b></td>
+            </tr>
+            <tr>
+                <td>Адреса проживання:</td>
+                <td><b>@Html.DisplayFor(model => model.DataPerson.Person.FullAddress)</b></td>
+            </tr>
+            <tr>
+                <td>Мобільний телефон:</td>
+                <td><b>@Html.DisplayFor(model => model.DataPerson.Person.MobilePhoneNumber)</b></td>
+            </tr>
+        </table>
+        <hr />
+        @*<h4>Лічильник</h4>
+        <table style="width:100%;">
+            <tr>
+                <td>Номер лічильника:</td>
+                <td><b>@Html.DisplayFor(model => model.lichylnyk.Number)</b></td>
+            </tr>
+            <tr>
+                <td>ЕІС:</td>
+                <td><b>@Html.DisplayFor(model => model.lichylnyk.EIS)</b></td>
+            </tr>
+        </table>
+        <hr />*@
+        <h4>Стан розрахунків</h4>
+        <table>
+            <tr>
+                <td>Просрочений борг: </td>
+                <td><b>@Html.DisplayFor(model => model.DataPerson.Finance.DebPoch)</b></td>
+            </tr>
+        </table>
+        <hr />
+        <h4>Стан точки обліку</h4>
+        <table>
+            <tr>
+                <td>Коли видано попередження:</td>
+                <td><b>@Html.DisplayFor(model => model.DataPerson.Poperedgenia.Poper)</b></td>
+            </tr>
+            <tr>
+                <td>Прогнозована дата припинення е/е:</td>
+                <td><b>@Html.DisplayFor(model => model.DataPerson.Poperedgenia.DateVykl)</b></td>
+            </tr>
+            <tr>
+                <td>Дата припинення електропостачання:</td>
+                <td><b>@Html.DisplayFor(model => model.DataPerson.Vykl.DateVykl)</b></td>
+            </tr>
+            <tr>
+                <td>Чи відключено абонента?:</td>
+                <td><b>@Html.DisplayFor(model => model.DataPerson.Vykl.Status)</b></td>
+            </tr>
+        </table>
+    </div>
+
+    <form asp-action="DeleteOne" 
+          asp-route-returnToController=@ViewData["retCtr"]
+          asp-route-returnToAction=@ViewData["retAct"]
+    >
+        <input type="hidden" asp-for="DataPerson.Id" />
+        <input type="hidden" asp-for="Direction" />
+        <input type="submit" value="Відмінити попередження" class="btn btn-danger" /> |
+        <a asp-action="Index">Повернутись до списку попереджень</a>
+    </form>
+</div>

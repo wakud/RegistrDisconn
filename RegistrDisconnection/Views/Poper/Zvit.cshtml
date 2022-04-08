@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Звітність";
+}
+<h1>Звітність</h1>
+
+
+<form id="zvitForm" class="form" method="POST">
+    <div class="form-group">
+        <div class="alert alert-secondary" role="alert">
+            <span class="sr-only">Toggle navigation</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <h4>Сформувати звіти станом на: </h4>
+        <input type="month" id="myDatepicker" name="stanom_na" />
+    </div>
+
+    <div class="form-group">
+        <div class="alert alert-secondary" role="alert">
+            <span class="sr-only">Toggle navigation</span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="colFormLabel" class="col-sm-10 col-form-label">
+            Звіт "Інформація щодо заборгованості за спожиту електроенергію населенням
+            (<b>від 1187 грн</b> та/або <b>до 1187 грн</b> з терміном виникнення <b>3 місяці і більше</b>)"
+        </label>
+        <div class="col-sm-2">
+            <input onclick="curZvit = 1" type="submit" name="zvit1" value="Сформувати" class="btn btn-outline-dark mb-2" />
+        </div>
+    </div>
+    <hr />
+
+    <div class="form-group row">
+        <label for="colFormLabel" class="col-sm-10 col-form-label">
+            Звіт "Інформація щодо відключень та виданих попереджень по населенню"
+        </label>
+        <div class="col-sm-2">
+            <input onclick="curZvit = 2" type="submit" name="zvit2" value="Сформувати" class="btn btn-outline-dark mb-2" />
+        </div>
+    </div>
+    <hr />
+
+    <div class="form-group row">
+        <label for="colFormLabel" class="col-sm-10 col-form-label">
+            Звіт "Перелік споживачів, по яким видано вимогу на вимкнення"
+        </label>
+        <div class="col-sm-2">
+            <input onclick="curZvit = 3" type="submit" name="zvit3" value="Сформувати" class="btn btn-outline-dark mb-2" />
+        </div>
+    </div>
+    <hr />
+
+    <div class="form-group row">
+        <label for="colFormLabel" class="col-sm-10 col-form-label">
+            Звіт "Перелік споживачів, по яким видано попередження"
+        </label>
+        <div class="col-sm-2">
+            <input onclick="curZvit = 3" type="submit" name="zvit4" value="Сформувати" class="btn btn-outline-dark mb-2" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="alert alert-secondary" role="alert">
+            <span class="sr-only">Toggle navigation</span>
+        </div>
+    </div>
+</form>

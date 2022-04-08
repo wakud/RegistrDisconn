@@ -1,0 +1,214 @@
+﻿@model RegistrDisconnection.Models.Abonents.ActualDataPerson
+
+@{
+    ViewData["Title"] = "Редагування";
+}
+
+<h4>Редагування даних по абоненту</h4>
+<div class="alert alert-primary" role="alert">
+    <h6>
+        Особовий рахунок: <b>@Html.DisplayFor(model => model.Person.OsRah)</b>
+        @if (Model.Vykl.Status == true)
+        {
+            <span class="badge badge-secondary">
+                Відключений @Html.DisplayFor(model => model.Vykl.DateVykl)
+            </span>
+        }
+    </h6>
+</div>
+<div class="alert alert-secondary" role="alert">
+    ПІП: <b>@Html.DisplayFor(model => model.Person.FullName)</b>
+</div>
+<div class="alert alert-success" role="alert">
+    Адреса проживання: <b>@Html.DisplayFor(model => model.Person.FullAddress)</b>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form id="main-form" asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Saldo.Id" />
+            <input type="hidden" asp-for="Saldo.PersonId" />
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="Saldo.DebPoch" class="control-label">Дебет на початок:</label>
+                        <input id="debPoch" onblur="recalc()" name="DebPoch" asp-for="Saldo.DebPoch" class="form-control" readonly />
+                        <span asp-validation-for="Saldo.DebPoch" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="Saldo.KredPoch" class="control-label">Кредит на початок:</label>
+                        <input id="kredPoch" onblur="recalc()" name="KredPoch" asp-for="Saldo.KredPoch" class="form-control" readonly />
+                        <span asp-validation-for="Saldo.KredPoch" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="Saldo.Vykl.DateVykl" class="control-label">Дата відключення:</label>
+                        <input type="date" id="dateVykl" onblur="recalc()" name="dateVykl" asp-for="Saldo.Vykl.DateVykl" class="form-control" />
+                        <span asp-validation-for="Saldo.Vykl.DateVykl" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="Saldo.BorgZaEE" class="control-label">Заборгованість за активну е/е:</label>
+                        <input id="narah" onblur="recalc()" name="BorgZaEE" asp-for="Saldo.BorgZaEE" class="form-control" readonly />
+                        <span asp-validation-for="Saldo.BorgZaEE" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="Saldo.SumaVykl" class="control-label">Сума за відключення:</label>
+                        <input id="sumVykl" onblur="recalc()" name="SumaVykl" asp-for="Saldo.SumaVykl" class="form-control" />
+                        <span asp-validation-for="Saldo.SumaVykl" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="Saldo.SumaVkl" class="control-label">Сума за підключення:</label>
+                        <input id="sumVkl" onblur="recalc()" name="SumaVkl" asp-for="Saldo.SumaVkl" class="form-control" />
+                        <span asp-validation-for="Saldo.SumaVkl" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="Saldo.Oplata" class="control-label">Оплата за викл./вкл.:</label>
+                        <input id="oplata" onblur="recalc()" name="Oplata" asp-for="Saldo.Oplata" class="form-control" />
+                        <span asp-validation-for="Saldo.Oplata" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="Saldo.OplataZaEE" class="control-label">Оплата за активну е/е:</label>
+                        <input id="oplataEE" onblur="recalc()" name="OplataZaEE" asp-for="Saldo.OplataZaEE" class="form-control" />
+                        <span asp-validation-for="Saldo.OplataZaEE" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="Vykl.Lichylnyk.Pokazy" class="control-label">Показник лічильника:</label>
+                        <input name="Pokazy" asp-for="Vykl.Lichylnyk.Pokazy" class="form-control" />
+                        <span asp-validation-for="Vykl.Lichylnyk.Pokazy" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="Saldo.DebKin" class="control-label">Дебет на кінець:</label>
+                        <input id="debKin" name="DebKin" asp-for="Saldo.DebKin" class="form-control" readonly />
+                        <span asp-validation-for="Saldo.DebKin" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="Saldo.KredKin" class="control-label">Кредит на кінець:</label>
+                        <input id="kredKin" name="KredKin" asp-for="Saldo.KredKin" class="form-control" readonly />
+                        <span asp-validation-for="Saldo.KredKin" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Зберегти" class="btn btn-primary" />
+                @*<a asp-action="Details" asp-route-id="@Model.Person.Id" class="btn btn-info">Повернутися назад</a>*@
+                <a asp-action="Index" class="btn btn-secondary">Повернутися до списку абонентів</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(() => {
+            recalc();
+            $('form').submit((ev) => {
+                recalc();
+                $('#kredPoch').val($('#kredPoch').val().replace('.', ','));
+                $('#debPoch').val($('#debPoch').val().replace('.', ','));
+                $('#oplata').val($('#oplata').val().replace('.', ','));
+                $('#narah').val($('#narah').val().replace('.', ','));
+                $('#sumVykl').val($('#sumVykl').val().replace('.', ','));
+                $('#sumVkl').val($('#sumVkl').val().replace('.', ','));
+                $('#debKin').val($('#debKin').val().replace('.', ','));
+                $('#kredKin').val($('#kredKin').val().replace('.', ','));
+                $('#oplataEE').val($('#oplataEE').val().replace('.', ','));
+            });
+        });
+        function recalc() {
+            let creditStart = $('#kredPoch').val();
+            if (creditStart && creditStart.trim() !== "") {
+                creditStart = parseFloat(creditStart.replace(',', '.'));
+            } else {
+                creditStart = 0.0;
+            }
+
+            let debetStart = $('#debPoch').val();
+            if (debetStart && debetStart.trim() !== "") {
+                debetStart = parseFloat(debetStart.replace(',', '.'));
+            } else {
+                $('#debPoch').val(0.0);
+                debetStart = 0.0;
+            }
+
+            let oplata = $('#oplata').val();
+            if (oplata && oplata.trim() !== "") {
+                oplata = parseFloat(oplata.replace(',', '.'));
+            } else {
+                $('#oplata').val(0.0);
+                oplata = 0.0;
+            }
+
+            let oplataEE = $('#oplataEE').val();
+            if (oplataEE && oplataEE.trim() !== "") {
+                oplataEE = parseFloat(oplataEE.replace(',', '.'));
+            } else {
+                $('#oplataEE').val(0.0);
+                oplataEE = 0.0;
+            }
+
+            let narah = $('#narah').val();
+            if (narah && narah.trim() !== "") {
+                narah = parseFloat(narah.replace(',', '.'));
+            } else {
+                $('#narah').val(0.0);
+                narah = 0.0;
+            }
+            let sumVykl = $('#sumVykl').val();
+            if (sumVykl && sumVykl.trim() !== "") {
+                sumVykl = parseFloat(sumVykl.replace(',', '.'));
+            } else {
+                $('#sumVykl').val(0.0)
+                sumVykl = 0.0;
+            }
+            let sumVkl = $('#sumVkl').val();
+            if (sumVkl && sumVkl.trim() !== "") {
+                sumVkl = parseFloat(sumVkl.replace(',', '.'));
+            } else {
+                $('#sumVkl').val(0.0);
+                sumVkl = 0.0;
+            }
+            const debetEnd = $('#debKin');
+            const creditEnd = $('#kredKin');
+            let saldo = (debetStart + sumVkl + sumVykl /*+ narah*/) - oplata - creditStart;
+            debetEnd.val(0);
+            creditEnd.val(0);
+            if (saldo > 0) {
+                debetEnd.val(saldo.toFixed(2));
+            } else if (saldo < 0) {
+                creditEnd.val((saldo * -1).toFixed(2));
+            }
+        }
+    </script>
+}

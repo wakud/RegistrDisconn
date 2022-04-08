@@ -1,0 +1,85 @@
+﻿@using System.Data
+@model IEnumerable<RegistrDisconnection.Models.Abonents.ActualDataPerson>
+@{
+    ViewData["Title"] = "Список абонентів";
+}
+<div class="form-group">
+    <div class="alert alert-info" role="alert">
+        <span class="sr-only">Toggle navigation</span>
+    </div>
+</div>
+
+@using (Html.BeginForm("UploadAbon", "Poper", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary()
+    <form method="get">
+        <div class="form-inline form-group">
+            <div class="form-row">
+                <div class="col-sm-3">
+                    <label aclass="control-label">Завантаження нових боржників від</label>
+                </div>
+                <div class="col-2">
+                    <input class="form-control" name="SumaBorgu" type="text" placeholder="Сума боргу" />
+                </div>
+                <div class="col-2">
+                    <label aclass="control-label">грн., суми боргу</label>
+                </div>
+                <div class="col-4">
+                    <button onclick="loadPage()" type="submit" class="btn btn-info mb-2">Завантажити</button>
+                    @if (TempData["error"] != null && TempData["error"].ToString().Trim() == "BadSum".ToString().Trim())
+                    {
+                        <script>
+                            setTimeout(() => alert("Не введена сума боргу, або вже триває завантаження!"), 500);
+                        </script>
+                    }
+                    <button onclick="loadPage('@Url.Action("Update", "Poper")')" type="button" class="btn btn-info mb-2">Оновити борг за е/е</button>
+                </div>
+                @*<div class="col-2">
+                </div>*@
+                <div class="col-4">
+                    <input id="Checkbox1" type="checkbox" name="notPay" /> Враховувати період 6 місяців не оплат.
+                </div>
+                <div class="col-4">
+                    <input id="Checkbox2" type="checkbox" name="monthBorg" /> Враховувати 6 місяців заборгованості.
+                </div>
+            </div>
+
+        </div>
+    </form>
+}
+
+<div class="form-group">
+    <div class="alert alert-info" role="alert">
+        <span class="sr-only">Toggle navigation</span>
+    </div>
+</div>
+
+<p></p>
+
+<form class="form-inline" asp-action="Create">
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <label for="OsRah" class="control-label">Введіть</label>
+            </div>
+            <div class="col-3">
+                <input id="OsRah" name="OsRah" class="form-control" placeholder="Особовий рахунок" />
+            </div>
+            <div class="col-7">
+                <input onclick="loadPage()" type="submit" value="Добавити/Пошук" class="btn btn-info" />
+                @if (TempData["error"] != null && TempData["error"].ToString().Trim() == "BadOs".ToString().Trim())
+                {
+                    <script>
+                        setTimeout(() => alert("Введіть особовий або ПІП абонента!"), 500);
+                    </script>
+                }
+                @if (TempData["error"] != null && TempData["error"].ToString().Trim() == "Netu".ToString().Trim())
+                {
+                    <script>
+                        setTimeout(() => alert("Особовий рахунок не знайдено!"), 500);
+                    </script>
+                }
+            </div>
+        </div>
+    </div>
+</form>

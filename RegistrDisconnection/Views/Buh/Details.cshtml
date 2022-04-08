@@ -1,0 +1,148 @@
+﻿@model RegistrDisconnection.Models.Abonents.ActualDataPerson
+
+@{
+    ViewData["Title"] = "Детально по абоненту";
+}
+
+@* Контролер Buh *@
+<div>
+    <h4>Дані по абоненту</h4>
+    <hr />
+    <table class="table table-striped table-active">
+        <tr>
+            <td width="230">Особовий рахунок:</td>
+            <td><b>@Html.DisplayFor(model => model.Person.OsRah)</b></td>
+        </tr>
+        <tr>
+            <td>Прізвище, Ім'я, по батькові:</td>
+            <td><b>@Html.DisplayFor(model => model.Person.FullName)</b></td>
+        </tr>
+        <tr>
+            <td>Адреса проживання:</td>
+            <td><b>@Html.DisplayFor(model => model.Person.FullAddress)</b></td>
+        </tr>
+        <tr>
+            <td>Мобільний телефон:</td>
+            <td><b>@Html.DisplayFor(model => model.Person.MobilePhoneNumber)</b></td>
+        </tr>
+    </table>
+    <hr />
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h4>Лічильник</h4>
+            </div>
+            <div class="col">
+                <div class="row justify-content-md-center">
+                    <h4>Стан точки обліку</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2" style="background-color:deepskyblue">Номер лічильника:</div>
+        <div class="col-2" style="background-color:deepskyblue">Показ лічильника:</div>
+        <div class="col-2" style="background-color:deepskyblue">ЕІС:</div>
+        <div class="col-3" style="background-color:deepskyblue">Дата припинення електропостачання:</div>
+        <div class="col-3" style="background-color:deepskyblue">Чи відключено абонента?:</div>
+    </div>
+    <div class="row">
+        <div class="col-2" style="background-color:lightskyblue">
+            <b>@Html.DisplayFor(model => model.Lichylnyk.Number)</b>
+        </div>
+        <div class="col-2" style="background-color:lightskyblue">
+            <b>@Html.DisplayFor(model => model.Lichylnyk.Pokazy)</b>
+        </div>
+        <div class="col-2" style="background-color:lightskyblue">
+            <b>@Html.DisplayFor(model => model.Lichylnyk.EIS)</b>
+        </div>
+        <div class="col-3" style="background-color:lightskyblue">
+            @if (Model.Vykl.DateVykl.HasValue)
+            {
+                <b>@(((DateTime)Model.Vykl.DateVykl).ToString("dd/MM/yyyy"))</b>
+            }
+        </div>
+        <div class="col-3" style="background-color:lightskyblue">
+            <b>
+                @if (Model.Vykl.Status == true)
+                {
+                    <span class="badge badge-secondary">
+                        Відключений
+                    </span>
+                }
+            </b>
+        </div>
+    </div>
+    <hr />
+
+    <h4>
+        <font color="#990000">
+            Баланс: @(@Model.Saldo.DebKin - @Model.Saldo.KredKin)
+        </font>
+    </h4>
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Період</th>
+                <th scope="col">Борг за активну е/е</th>
+                <th scope="col">Оплата за е/е</th>
+                <th scope="col">Перерахунки</th>
+                <th scope="col">Дт на початок</th>
+                <th scope="col">Кт на початок</th>
+                <th scope="col">Сума відключення</th>
+                <th scope="col">Сума підключення</th>
+                <th scope="col">Оплата</th>
+                <th scope="col">Дт на кінець</th>
+                <th scope="col">Кт на кінець</th>
+                @*<th scope="col">Дії</th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Person.Saldos.OrderByDescending(s => s.AktPeriod))
+            {
+                <tr>
+                    <th scope="row">@item.AktPeriod</th>
+                    <td>@item.BorgZaEE</td>
+                    <td>@item.OplataZaEE</td>
+                    <td>@item.Recount</td>
+                    <td>@item.DebPoch</td>
+                    <td>@item.KredPoch</td>
+                    <td>@item.SumaVykl</td>
+                    <td>@item.SumaVkl</td>
+                    <td>@item.Oplata</td>
+                    <td>@item.DebKin</td>
+                    <td>@item.KredKin</td>
+                    @*<td><a asp-action="Edit" asp-route-id="@item.Id" name="edit" class="btn btn-outline-info mb-2">Змінити</a></td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<form>
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <div class="alert alert-primary" role="alert">
+                <b><a asp-action="Edit" asp-route-id="@Model.Id">Змінити</a></b>
+            </div>
+        </div>
+        <div class="form-group col-md-2">
+            <div class="alert alert-primary" role="alert">
+                <b><a asp-action="Rah" asp-route-id="@Model.Id">Рахунок</a></b>
+            </div>
+        </div>
+        <div class="form-group col-md-2">
+            <div class="alert alert-primary" role="alert">
+                <b><a asp-action="Akt" asp-route-id="@Model.Id">Акт</a></b>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <div class="alert alert-primary" role="alert">
+                <b><a asp-controller="Buh" asp-action="Index">Повернутися до списку абонентів</a></b>
+            </div>
+        </div>
+    </div>
+</form>
+

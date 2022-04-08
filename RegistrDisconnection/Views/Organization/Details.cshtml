@@ -1,0 +1,97 @@
+﻿@model RegistrDisconnection.Models.Dictionaries.Organization
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <h4>Детально про @Html.DisplayFor(model => model.Name)</h4>
+    <br>
+    <table style="width:100%;" border="1">
+        <tr>
+            <td><b>Код ЦОКу:</b></td>
+            <td>@Html.DisplayFor(model => model.Code)</td>
+        </tr>
+        <tr>
+            <td><b>Назва ЦОКу:</b></td>
+            <td>@Html.DisplayFor(model => model.Name)</td>
+        </tr>
+        @*<tr>
+            <td><b>Назва ЦОКу для документів(без закінчення -ий)::</b></td>
+            <td>@Html.DisplayFor(model => model.NameDoc)</td>
+        </tr>*@
+        <tr>
+            <td><b>Начальник ЦОКу:</b></td>
+            <td>@Html.DisplayFor(model => model.Nach)</td>
+        </tr>
+        <tr>
+            <td><b>Бухгалтер ЦОКу:</b></td>
+            <td>@Html.DisplayFor(model => model.Buh)</td>
+        </tr>
+        <tr>
+            <td><b>Id району(для завантаження нас.пунктів):</b></td>
+            <td>@Html.DisplayFor(model => model.RegionId)</td>
+        </tr>
+        <tr>
+            <td><b>Повна адреса ЦОКу:</b></td>
+            <td>@Html.DisplayFor(model => model.Address)</td>
+        </tr>
+        <tr>
+            <td><b>Поштовий індекс:</b></td>
+            <td>@Html.DisplayFor(model => model.Index)</td>
+        </tr>
+        <tr>
+            <td><b>Область:</b></td>
+            <td>@Html.DisplayFor(model => model.Oblast)</td>
+        </tr>
+        <tr>
+            <td><b>Район:</b></td>
+            <td>@Html.DisplayFor(model => model.Rajon)</td>
+        </tr>
+        <tr>
+            <td><b>Населений пункт:</b></td>
+            <td>@Html.DisplayFor(model => model.City)</td>
+        </tr>
+        <tr>
+            <td><b>Вулиця:</b></td>
+            <td>@Html.DisplayFor(model => model.Street)</td>
+        </tr>
+        <tr>
+            <td><b>Телефон:</b></td>
+            <td>@Html.DisplayFor(model => model.Tel)</td>
+        </tr>
+        <tr>
+            <td><b>ЄДРПОУ:</b></td>
+            <td>@Html.DisplayFor(model => model.EDRPOU)</td>
+        </tr>
+        <tr>
+            <td><b>ІПН:</b></td>
+            <td>@Html.DisplayFor(model => model.IPN)</td>
+        </tr>
+        <tr>
+            <td><b>МФО:</b></td>
+            <td>@Html.DisplayFor(model => model.MFO)</td>
+        </tr>
+        <tr>
+            <td><b>Р/р:</b></td>
+            <td>@Html.DisplayFor(model => model.RozRah)</td>
+        </tr>
+        <tr>
+            <td><b>РЕМ:</b></td>
+            <td>@Html.DisplayFor(model => model.NameREM)</td>
+        </tr>
+        <tr>
+            <td><b>DbConfigName:</b></td>
+            <td>@Html.DisplayFor(model => model.DbConfigName)</td>
+        </tr>
+        <tr>
+            <td><b>OrganizationGuid:</b></td>
+            <td>@Html.DisplayFor(model => model.OrganizationUnitGUID)</td>
+        </tr>
+    </table>
+</div>
+<br>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Змінити</a>
+    <a asp-action="Index" class="btn btn-info">До списку ЦОКів</a>
+</div>

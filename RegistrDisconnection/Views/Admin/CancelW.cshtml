@@ -1,0 +1,51 @@
+﻿@model RegistrDisconnection.ViewModels.DellNapr
+@{
+    ViewData["Title"] = "CancelW";
+}
+
+<h4>Відміна виданих попереджень по напрямках</h4>
+
+<form class="form" method="get">
+    <div class="row">
+        <div class="col-7">
+            <div class="form-row">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div>
+                            <label for="direction" class="input-group-text">Напрямок: </label>
+                        </div>
+                        <select name="direction" asp-items="Model.Directions" class="form-control"></select>
+                        <div>
+                            <input id="filtr" type="submit" name="filtr" value="Фільтр" class="btn btn-outline-dark mb-2" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<table class="table table-striped">
+    <tr>
+        <th>Напрямок</th>
+        <th>К-ть абонентів</th>
+        <th>Дата попередження</th>
+        <th>Станом на</th>
+        <th>Відключення</th>
+        <th>Операції</th>
+    </tr>
+
+    @foreach (var item in Model.People)
+    {
+        <tr>
+            <td>@item.Person.Address.Direction.Name</td>
+            <td>@item.Person.OsRah</td>
+            <td>@item.Poperedgenia.Poper</td>
+            <td>@item.Poperedgenia.StanNa</td>
+            <td>@item.Poperedgenia.DateVykl</td>
+            <td>
+                <a asp-controller="AbonDetails" asp-action="Index" asp-route-id="@item.Id">Відмінити</a>
+            </td>
+        </tr>
+    }
+</table>
+

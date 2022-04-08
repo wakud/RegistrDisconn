@@ -1,0 +1,54 @@
+﻿@using RegistrDisconnection.MyClasses
+@model RegistrDisconnection.Models.Users.User
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Змінити дані про користувача</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-5">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label">Прізвище, імя, по батькові</label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Login" class="control-label">Логін</label>
+                <input asp-for="Login" class="form-control" />
+                <span asp-validation-for="Login" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label">Пароль</label>
+                <input asp-for="Password" class="form-control" asp-format="@ViewData["Pass"]" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CokId" class="control-label">ЦОК</label>
+                <select asp-for="CokId" class="form-control" asp-items="ViewBag.CokId"></select>
+                <span asp-validation-for="CokId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PravaId" class="control-label">Права</label>
+                <select asp-for="PravaId" class="form-control" asp-items="ViewBag.PravaId"></select>
+                <span asp-validation-for="PravaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Зберегти" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-info">Повернутись до списку користувачів</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

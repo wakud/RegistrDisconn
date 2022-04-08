@@ -1,0 +1,53 @@
+﻿@model IEnumerable<RegistrDisconnection.Data.MainContext>
+@{
+    ViewData["Title"] = "Адміністрування";
+}
+
+<h1>Адміністрування програми</h1>
+
+<div class="form-group">
+    <div class="alert alert-danger" role="alert">
+        <span class="sr-only">Toggle navigation</span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <ul>
+            <li>
+                <a asp-controller="Users" asp-action="Index" class="text-primary">
+                    Список користувачів
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Organization" asp-action="Index" class="text-dark">
+                    Список ЦОКів
+                </a>
+            </li>
+            <li>
+                <a asp-controller="DirectionDicts" asp-action="Index" class="text-success">
+                    Список напрямків
+                </a>
+            </li>
+            <li>
+                <a asp-controller="VyhAndSviats" asp-action="Index" class="text-warning">
+                    Список вихідних і святкових днів (тільки для розробника)
+                </a>
+            </li>
+            <li>
+                <a asp-controller="GroupOfPoper" asp-action="Index" class="text-danger">
+                    Відміна попереджень по напрямку
+                </a>
+            </li>
+            @*<li>
+                <a asp-controller="Admin" asp-action="ListForDelete" class="text-danger">
+                    Видалення з бази помилкового абонента (тільки для розробника)
+                </a>
+            </li>*@
+        </ul>
+    </div>
+</div>
+<div class="form-group">
+    <div class="alert alert-danger" role="alert">
+        <span class="sr-only">Toggle navigation</span>
+    </div>
+</div>

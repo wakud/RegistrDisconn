@@ -1,0 +1,32 @@
+﻿@model RegistrDisconnection.Models.Dictionaries.DirectionDict
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Добавлення нового напрямку відключення</h4>
+<hr />
+<div class="row">
+    <div class="col-md-5">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Назва напрямку</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CokId" class="control-label">ЦОК</label>
+                <select asp-for="CokId" class ="form-control" asp-items="ViewBag.CokId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Добавити" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Повернутися до списку напрямків</a>
+</div>
+
