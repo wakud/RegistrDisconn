@@ -9,6 +9,9 @@ using System.Linq;
 
 namespace RegistrDisconnection.MyClasses
 {
+    /// <summary>
+    /// Добавлення абонента в БД програми
+    /// </summary>
     public class CreateAbonents
     {
         private readonly LoadUtility loadData;
@@ -69,7 +72,7 @@ namespace RegistrDisconnection.MyClasses
             address.Apartment = loadData.Apartment.Trim();
 
             //Це для добавлення напрямків
-            if (cokCode != "TR40")
+            if (cokCode != "ORG")
             {
                 DirectionCityMap dcm = _context.DirectionCityMaps.FirstOrDefault(dcm => dcm.UtilityCityId == address.CityId);
                 address.DirectionDictId = dcm == null
@@ -106,7 +109,6 @@ namespace RegistrDisconnection.MyClasses
             personExisted = true;
             person = _context.Persons.FirstOrDefault(
                 p => p.AccountId == loadData.AccountId && p.Cok.Code == loadData.OrganizationCode
-                //p => p.OsRah == loadData.AccountNumber && p.Cok.Code == loadData.OrganizationCode
             );
             // null Якщо немає в базі
             if (person == null)
@@ -172,14 +174,13 @@ namespace RegistrDisconnection.MyClasses
             _ = _context.SaveChanges();                 //зберігаємо в таблиці добавлений запис
         }
 
-        //четвертою наповнюємо таблицю лічильників
+        //четвертою наповнюємо таблицю засобів обліку
         public void CreateLichylnyk()
         {
             bool lichylnykExisted = true;
             lichylnyk = _context.Lichylnyks
                 .FirstOrDefault(l => l.Person.AccountId == loadData.AccountId
                     && l.Person.Cok.Code == loadData.OrganizationCode);
-            //.FirstOrDefault(l => l.Person.OsRah == loadData.AccountNumber && l.Person.Cok.Code == loadData.OrganizationCode);
             // null Якщо немає в базі
             if (lichylnyk == null)
             {
@@ -244,7 +245,6 @@ namespace RegistrDisconnection.MyClasses
             bool poperExisted = true;
             poper = _context.Poperedgenias.FirstOrDefault(p => p.Person.AccountId == loadData.AccountId
                     && p.Person.Cok.Code == loadData.OrganizationCode);
-            //poper = _context.Poperedgenias.FirstOrDefault(p => p.Person.OsRah == loadData.AccountNumber && p.Person.Cok.Code == loadData.OrganizationCode);
             // null Якщо немає в базі
             if (poper == null)
             {
@@ -267,7 +267,7 @@ namespace RegistrDisconnection.MyClasses
 
         }
 
-        //Наповнення таблиці актуальних даних
+        //Заповнення таблиці актуальних даних, згідно завантажених даних
         public ActualDataPerson CreateActualData()
         {
             bool actualExisted = true;
@@ -286,11 +286,6 @@ namespace RegistrDisconnection.MyClasses
                 actualData = new ActualDataPerson();
                 actualExisted = false;
             }
-
-            //Console.OutputEncoding = Encoding.GetEncoding(1251);
-            //Console.WriteLine("++++++++++++++++++");
-            //Console.WriteLine(person.Id);
-            //Console.WriteLine("------------------");
 
             actualData.LoadSum = decimal.Parse(SumaBorgu);
             actualData.PersonId = person.Id;
